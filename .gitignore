@@ -1,0 +1,40 @@
+# Node / Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+.next/
+.turbo/
+
+# Test output
+coverage/
+test-results/
+playwright-report/
+playwright/.cache/
+.nyc_output/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+!.env.example
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Project-specific (snapshots of test artifacts only — exclude source)
+# If you add real source code, gitignore it per-project
+projects/*/src/
+projects/*/app/
