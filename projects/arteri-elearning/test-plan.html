@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>test-plan</title>
+<style>
+  @page {
+    size: A4;
+    margin: 2cm 1.8cm 2.5cm 1.8cm;
+    @bottom-center {
+      content: counter(page) " / " counter(pages);
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-size: 9pt;
+      color: #666;
+    }
+    @top-right {
+      content: "Arteri E-Learning — Test Plan v1.0";
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-size: 8pt;
+      color: #999;
+    }
+  }
+
+  body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    max-width: 100%;
+  }
+
+  h1, h2, h3, h4 {
+    color: #0f172a;
+    font-weight: 700;
+    line-height: 1.3;
+    page-break-after: avoid;
+  }
+  h1 {
+    font-size: 22pt;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 8px;
+    margin: 0 0 18px 0;
+    page-break-before: always;
+  }
+  h1:first-of-type {
+    page-break-before: avoid;
+  }
+  h2 {
+    font-size: 15pt;
+    color: #1e40af;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 5px;
+    margin: 24px 0 12px 0;
+  }
+  h3 {
+    font-size: 12.5pt;
+    color: #1e3a8a;
+    margin: 18px 0 8px 0;
+  }
+  h4 {
+    font-size: 11pt;
+    color: #334155;
+    margin: 14px 0 6px 0;
+  }
+
+  p, li { margin: 6px 0; }
+
+  ul, ol {
+    padding-left: 22px;
+    margin: 8px 0;
+  }
+  li { margin: 3px 0; }
+
+  blockquote {
+    border-left: 4px solid #3b82f6;
+    background: #f1f5f9;
+    margin: 10px 0;
+    padding: 8px 14px;
+    color: #334155;
+    font-style: italic;
+    border-radius: 0 4px 4px 0;
+  }
+
+  code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 9.5pt;
+    background: #f1f5f9;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #be185d;
+  }
+
+  pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 12px 14px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 9pt;
+    line-height: 1.45;
+    page-break-inside: avoid;
+  }
+  pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0;
+    page-break-inside: avoid;
+    font-size: 9.5pt;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #1e40af;
+    color: #fff;
+    font-weight: 600;
+    font-size: 9.5pt;
+  }
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+  tr:hover td {
+    background: #eff6ff;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 20px 0;
+  }
+
+  a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  /* Markdown extension classes */
+  .task-list-item { list-style: none; }
+  .task-list-item input[type="checkbox"] { margin-right: 6px; }
+
+  /* Header/footer table for document info */
+  .doc-info {
+    background: #f1f5f9;
+    border-left: 4px solid #2563eb;
+    padding: 12px 16px;
+    margin: 16px 0 24px 0;
+    border-radius: 0 4px 4px 0;
+    page-break-inside: avoid;
+  }
+  .doc-info table {
+    background: transparent;
+    margin: 0;
+  }
+  .doc-info th, .doc-info td {
+    background: transparent;
+    border: none;
+    padding: 3px 8px;
+    color: #1e293b;
+  }
+  .doc-info th {
+    color: #1e40af;
+    width: 30%;
+  }
+</style>
+</head>
+<body>
+<h1 id="test-plan-arteri-e-learning-stuudi">Test Plan — Arteri E-Learning (Stuudi)</h1>
+<blockquote>
+<p><strong>Project:</strong> Arteri E-Learning Platform (frontend repo: <code>stuudi-frontend</code>)
+<strong>Repo:</strong> https://github.com/irzadzulhika29/stuudi-frontend
+<strong>Document Version:</strong> v1.0
+<strong>Date:</strong> 2026-06-21
+<strong>Prepared By:</strong> Muhammad Irza Dzulhika (QA Intern Candidate)
+<strong>Template:</strong> Based on BINUS University Test Plan Framework (Mulyanto, 2018)</p>
+</blockquote>
+<hr />
+<h2 id="document-information">Document Information</h2>
+<table class="doc-info">
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Project Name</strong></td>
+<td>Arteri E-Learning Platform (codename: Stuudi)</td>
+</tr>
+<tr>
+<td><strong>Document Version</strong></td>
+<td>v1.0</td>
+</tr>
+<tr>
+<td><strong>Date</strong></td>
+<td>2026-06-21</td>
+</tr>
+<tr>
+<td><strong>Prepared By</strong></td>
+<td>Muhammad Irza Dzulhika</td>
+</tr>
+<tr>
+<td><strong>Reviewed By</strong></td>
+<td><em>(to be assigned)</em></td>
+</tr>
+<tr>
+<td><strong>Approved By</strong></td>
+<td><em>(to be assigned)</em></td>
+</tr>
+<tr>
+<td><strong>Frontend Repo</strong></td>
+<td><code>github.com/irzadzulhika29/stuudi-frontend</code></td>
+</tr>
+<tr>
+<td><strong>Backend Repo</strong></td>
+<td><code>github.com/azmiagr/lms-project</code> (out of scope)</td>
+</tr>
+<tr>
+<td><strong>Live URL</strong></td>
+<td><code>https://stuudi.vercel.app</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-introduction-pendahuluan">1. Introduction (Pendahuluan)</h2>
+<h3 id="11-rencana-pengujian">1.1. Rencana Pengujian</h3>
+<p>Dokumen ini menjabarkan rencana pengujian komprehensif untuk platform <strong>Arteri E-Learning</strong> — aplikasi
+web berbasis Next.js 16 yang dirancang untuk mempersiapkan siswa menghadapi olimpiade sains nasional.
+Pengujian akan mencakup 4 area utama: <strong>CBT (Computer-Based Testing) engine</strong>, <strong>autentikasi &amp; role
+management</strong>, <strong>manajemen kursus &amp; konten</strong>, dan <strong>dashboard admin/teacher</strong>. Pengujian dilakukan
+pada frontend (Next.js) dengan fokus pada functional, integration, dan end-to-end testing.</p>
+<h3 id="12-tujuan-pengujian">1.2. Tujuan Pengujian</h3>
+<p>Tujuan pengujian platform Arteri adalah:
+- <strong>Memastikan CBT engine</strong> (fitur paling kritis) berjalan sempurna untuk ujian olimpiade nasional
+  - Tab switch detection + 3-lives anti-cheat system berfungsi
+  - Auto-save jawaban saat network failure
+  - Timer countdown akurat
+  - 5 tipe soal (single, multiple, true/false, matching, short_answer) berjalan sesuai spek
+- <strong>Memvalidasi role-based access</strong> (student vs teacher vs admin) sesuai <code>src/middleware.ts</code>
+- <strong>Memverifikasi integrasi API</strong> dengan backend <code>lms-project</code> (60+ endpoint di <code>API_ENDPOINTS</code>)
+- <strong>Mengurangi regression</strong> dengan E2E automation + unit test yang sudah ada
+- <strong>Memenuhi standar kualitas</strong> untuk apply magang QA IT</p>
+<h3 id="13-metodologi-pengujian">1.3. Metodologi Pengujian</h3>
+<table>
+<thead>
+<tr>
+<th>Metode</th>
+<th>Tools</th>
+<th>Coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Black-box functional testing</strong></td>
+<td>Manual + Postman (API)</td>
+<td>Semua fitur user-facing</td>
+</tr>
+<tr>
+<td><strong>Component unit testing</strong></td>
+<td>Vitest + Testing Library</td>
+<td>13 test files existing (CBT-focused)</td>
+</tr>
+<tr>
+<td><strong>End-to-end testing</strong></td>
+<td>Playwright</td>
+<td>5 spec files existing</td>
+</tr>
+<tr>
+<td><strong>Security testing</strong></td>
+<td>OWASP ZAP, manual probing</td>
+<td>Auth flow, role bypass, JWT</td>
+</tr>
+<tr>
+<td><strong>Performance testing</strong></td>
+<td>k6 (planned)</td>
+<td>CBT engine load test</td>
+</tr>
+<tr>
+<td><strong>Accessibility testing</strong></td>
+<td>axe-core (planned)</td>
+<td>Form labels, keyboard nav, contrast</td>
+</tr>
+</tbody>
+</table>
+<h3 id="14-objek-pengujian">1.4. Objek Pengujian</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Technology</th>
+<th>Test Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>Next.js 16.0.10 (App Router) + React 19.2.1</td>
+<td>Full UI + client logic</td>
+</tr>
+<tr>
+<td><strong>API Client</strong></td>
+<td>Axios 1.13 (with JWT interceptor)</td>
+<td>All 60+ endpoints</td>
+</tr>
+<tr>
+<td><strong>State Management</strong></td>
+<td>Redux Toolkit + React Query</td>
+<td>Auth slice, exam slice, UI slice</td>
+</tr>
+<tr>
+<td><strong>CBT Engine</strong></td>
+<td>Custom React + Redux (5 question types)</td>
+<td>Full functional</td>
+</tr>
+<tr>
+<td><strong>Auth Middleware</strong></td>
+<td>Next.js middleware.ts (JWT decode)</td>
+<td>Role-based redirect</td>
+</tr>
+<tr>
+<td><strong>Backend (proxy)</strong></td>
+<td><code>lms-project</code> (Go/Python)</td>
+<td>E2E only (out of scope)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-arsitektur-sistem-yang-diuji">1.5. Arsitektur Sistem yang Diuji</h3>
+<div class="codehilite"><pre><span></span><code>┌────────────────────────────────────────────────────────────────┐
+│                    Browser (Chrome/Firefox/Safari)              │
+│              Next.js 16 SPA + Server Components                │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │  src/app/          (Routes — App Router)              │    │
+│  │    (auth)/login    (Public)                          │    │
+│  │    (landing)/      (Public)                          │    │
+│  │    (user)/         (Student — protected)             │    │
+│  │    (admin)/        (Teacher — protected)             │    │
+│  │    cbt/            (CBT — protected, critical)       │    │
+│  │  src/middleware.ts (JWT decode + role guard)         │    │
+│  │  src/features/     (auth, user, admin, public)       │    │
+│  │  src/shared/       (api, components, store, hooks)   │    │
+│  └──────────────────────────────────────────────────────┘    │
+│         │ HTTPS / Bearer JWT                                   │
+└─────────┼──────────────────────────────────────────────────────┘
+          │
+          ▼
+┌────────────────────────────────────────────────────────────────┐
+│     Backend (lms-project) — out of scope for this plan        │
+│     Endpoints: /auth/*, /student/*, /teacher/*, /exams/*      │
+└────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<h3 id="16-pembagian-sistem-untuk-pengujian-unit-dan-integrasi">1.6. Pembagian Sistem untuk Pengujian Unit dan Integrasi</h3>
+<table>
+<thead>
+<tr>
+<th>Test Level</th>
+<th>Target</th>
+<th>Tools</th>
+<th>Lokasi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unit test</strong></td>
+<td>Pure functions, hooks, isolated components</td>
+<td>Vitest + Testing Library</td>
+<td><code>src/**/__tests__/</code></td>
+</tr>
+<tr>
+<td><strong>Component integration</strong></td>
+<td>Component + Redux + hooks</td>
+<td>Vitest + Testing Library</td>
+<td><code>src/**/__tests__/</code></td>
+</tr>
+<tr>
+<td><strong>API integration</strong></td>
+<td>Axios calls mocked via MSW or mock</td>
+<td>Vitest</td>
+<td><code>src/services/__tests__/</code></td>
+</tr>
+<tr>
+<td><strong>E2E</strong></td>
+<td>Full flow (UI → API → DB)</td>
+<td>Playwright</td>
+<td><code>e2e/*.spec.ts</code></td>
+</tr>
+<tr>
+<td><strong>Manual</strong></td>
+<td>Visual regression, exploratory</td>
+<td>Manual + screenshots</td>
+<td>Staging environment</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-test-items-item-pengujian">2. Test Items (Item Pengujian)</h2>
+<h3 id="21-item-yang-akan-diuji">2.1. Item yang Akan Diuji</h3>
+<h4 id="a-authentication-authorization-high-priority">A. <strong>Authentication &amp; Authorization</strong> (HIGH PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AUTH-01</td>
+<td>Login form validation &amp; submit</td>
+<td>UI/Functional</td>
+<td><code>src/features/auth/login/</code></td>
+</tr>
+<tr>
+<td>AUTH-02</td>
+<td>JWT token storage (cookie + localStorage)</td>
+<td>Integration</td>
+<td><code>src/middleware.ts</code></td>
+</tr>
+<tr>
+<td>AUTH-03</td>
+<td>Role-based redirect (teacher→admin, student→dashboard)</td>
+<td>Integration</td>
+<td><code>src/middleware.ts</code></td>
+</tr>
+<tr>
+<td>AUTH-04</td>
+<td>401 auto-logout via Axios interceptor</td>
+<td>Integration</td>
+<td><code>src/shared/api/api.ts</code></td>
+</tr>
+<tr>
+<td>AUTH-05</td>
+<td>Cross-role access block (student→admin routes)</td>
+<td>Security</td>
+<td><code>src/middleware.ts</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="b-cbt-computer-based-testing-engine-highest-priority-critical">B. <strong>CBT (Computer-Based Testing) Engine</strong> (HIGHEST PRIORITY — CRITICAL)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CBT-01</td>
+<td>Exam intro screen &amp; start action</td>
+<td>UI/Functional</td>
+<td><code>src/features/user/cbt/</code></td>
+</tr>
+<tr>
+<td>CBT-02</td>
+<td>Question rendering (5 types)</td>
+<td>UI/Functional</td>
+<td><code>src/features/user/cbt/components/</code></td>
+</tr>
+<tr>
+<td>CBT-03</td>
+<td>Answer state management (Redux)</td>
+<td>State</td>
+<td><code>src/features/user/cbt/utils/answerState.ts</code></td>
+</tr>
+<tr>
+<td>CBT-04</td>
+<td>Auto-save on answer change</td>
+<td>Integration</td>
+<td><code>src/features/user/cbt/hooks/useAutoSave.ts</code></td>
+</tr>
+<tr>
+<td>CBT-05</td>
+<td>Timer countdown + auto-submit</td>
+<td>Critical</td>
+<td><code>src/features/user/cbt/hooks/useExamTimer.ts</code></td>
+</tr>
+<tr>
+<td>CBT-06</td>
+<td><strong>Tab switch detection + 3-lives system</strong></td>
+<td>Critical</td>
+<td><code>src/features/user/cbt/hooks/useFullscreenGuard.ts</code> + <code>examService.recordTabSwitch</code></td>
+</tr>
+<tr>
+<td>CBT-07</td>
+<td>Question navigation (skip, mark, review)</td>
+<td>UI/Functional</td>
+<td><code>src/features/user/cbt/components/QuestionNavigation.tsx</code></td>
+</tr>
+<tr>
+<td>CBT-08</td>
+<td>Exam summary screen</td>
+<td>UI/Functional</td>
+<td><code>src/features/user/cbt/components/ExamSummary.tsx</code></td>
+</tr>
+<tr>
+<td>CBT-09</td>
+<td>Submit exam &amp; result</td>
+<td>Integration</td>
+<td><code>examService.submitExam</code></td>
+</tr>
+<tr>
+<td>CBT-10</td>
+<td>Resume from snapshot (localStorage cache)</td>
+<td>Edge case</td>
+<td><code>examService.transformExamToReduxPayload</code></td>
+</tr>
+<tr>
+<td>CBT-11</td>
+<td>Math rendering (KaTeX)</td>
+<td>UI</td>
+<td><code>src/shared/components/math/</code></td>
+</tr>
+<tr>
+<td>CBT-12</td>
+<td>Image question rendering</td>
+<td>UI</td>
+<td><code>QuestionCard.tsx</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="c-student-dashboard-course-management-medium-priority">C. <strong>Student Dashboard &amp; Course Management</strong> (MEDIUM PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STU-01</td>
+<td>Student dashboard (upcoming exam, courses)</td>
+<td>UI/Functional</td>
+<td><code>src/features/user/dashboard/</code></td>
+</tr>
+<tr>
+<td>STU-02</td>
+<td>Browse courses (search, filter, pagination)</td>
+<td>UI/Functional</td>
+<td><code>src/features/user/courses/</code></td>
+</tr>
+<tr>
+<td>STU-03</td>
+<td>Course detail &amp; topic tree</td>
+<td>UI/Functional</td>
+<td><code>src/features/user/courses/</code></td>
+</tr>
+<tr>
+<td>STU-04</td>
+<td>Course content (text/media/quiz blocks)</td>
+<td>UI/Functional</td>
+<td><code>src/features/user/courses/</code></td>
+</tr>
+<tr>
+<td>STU-05</td>
+<td>Quiz flow (start, answer, submit, result)</td>
+<td>Integration</td>
+<td><code>COURSES.QUIZ.*</code> endpoints</td>
+</tr>
+<tr>
+<td>STU-06</td>
+<td>Notes per topic (CRUD)</td>
+<td>UI/Functional</td>
+<td><code>COURSES.TOPIC_NOTES</code> endpoint</td>
+</tr>
+<tr>
+<td>STU-07</td>
+<td>Notifications (list, mark read, delete)</td>
+<td>UI/Functional</td>
+<td><code>COURSES.NOTIFICATIONS*</code></td>
+</tr>
+<tr>
+<td>STU-08</td>
+<td>Team details view</td>
+<td>UI/Functional</td>
+<td><code>src/features/user/teams/</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="d-adminteacher-dashboard-medium-priority">D. <strong>Admin/Teacher Dashboard</strong> (MEDIUM PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ADM-01</td>
+<td>Admin dashboard home (stats)</td>
+<td>UI/Functional</td>
+<td><code>src/features/admin/dashboard/home/</code></td>
+</tr>
+<tr>
+<td>ADM-02</td>
+<td>Courses management (CRUD)</td>
+<td>Integration</td>
+<td><code>TEACHER.COURSES*</code> endpoints</td>
+</tr>
+<tr>
+<td>ADM-03</td>
+<td>Topic &amp; content management</td>
+<td>Integration</td>
+<td><code>TEACHER.ADD_TOPIC/UPDATE_TOPIC/DELETE_TOPIC</code></td>
+</tr>
+<tr>
+<td>ADM-04</td>
+<td>Quiz authoring (Tiptap editor)</td>
+<td>UI/Functional</td>
+<td><code>src/features/admin/dashboard/courses/</code></td>
+</tr>
+<tr>
+<td>ADM-05</td>
+<td>Block editor (text/media/quiz)</td>
+<td>UI/Functional</td>
+<td><code>TEACHER.ADD_*_BLOCK</code> endpoints</td>
+</tr>
+<tr>
+<td>ADM-06</td>
+<td>Exam management (CRUD)</td>
+<td>Integration</td>
+<td><code>TEACHER.EXAM*</code> endpoints</td>
+</tr>
+<tr>
+<td>ADM-07</td>
+<td>Exam dashboard (analytics)</td>
+<td>UI/Functional</td>
+<td><code>TEACHER.GET_EXAM_DASHBOARD</code></td>
+</tr>
+<tr>
+<td>ADM-08</td>
+<td>Cheating report (per exam)</td>
+<td>UI/Functional</td>
+<td><code>src/app/(admin)/dashboard-admin/cheating-report/</code></td>
+</tr>
+<tr>
+<td>ADM-09</td>
+<td>Disqualified participants list</td>
+<td>UI/Functional</td>
+<td><code>TEACHER.DISQUALIFIED_PARTICIPANTS</code></td>
+</tr>
+<tr>
+<td>ADM-10</td>
+<td>Participants management (bulk upload)</td>
+<td>Integration</td>
+<td><code>TEACHER.ADD_PARTICIPANT_BULK</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="e-public-landing-low-priority">E. <strong>Public / Landing</strong> (LOW PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PUB-01</td>
+<td>Landing page (home)</td>
+<td>UI/Visual</td>
+<td><code>src/features/public/landing/</code></td>
+</tr>
+<tr>
+<td>PUB-02</td>
+<td>Product page</td>
+<td>UI/Visual</td>
+<td><code>src/app/(landing)/produk/</code></td>
+</tr>
+<tr>
+<td>PUB-03</td>
+<td>About us page</td>
+<td>UI/Visual</td>
+<td><code>src/app/(landing)/tentang-kami/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-item-yang-tidak-akan-diuji">2.2. Item yang TIDAK Akan Diuji</h3>
+<ul>
+<li><strong>Backend API implementation</strong> (lms-project) — di luar scope frontend testing</li>
+<li><strong>Email delivery</strong> (notification system) — out of scope</li>
+<li><strong>Payment gateway</strong> — tidak ada di project ini</li>
+<li><strong>Mobile native app</strong> — tidak ada, hanya web responsive</li>
+<li><strong>Performance under 10K concurrent users</strong> — akan diukur terpisah dengan k6</li>
+<li><strong>Penetration testing</strong> — out of scope, akan dilakukan oleh security team</li>
+<li><strong>Cross-browser legacy</strong> (IE11, Safari &lt; 14) — target browser modern saja</li>
+</ul>
+<h3 id="23-definisi-istilah-penting">2.3. Definisi Istilah Penting</h3>
+<table>
+<thead>
+<tr>
+<th>Istilah</th>
+<th>Definisi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CBT</strong></td>
+<td>Computer-Based Testing — sistem ujian digital olimpiade</td>
+</tr>
+<tr>
+<td><strong>JWT</strong></td>
+<td>JSON Web Token untuk authentication</td>
+</tr>
+<tr>
+<td><strong>Attempt</strong></td>
+<td>Sesi pengerjaan ujian oleh satu siswa untuk satu exam</td>
+</tr>
+<tr>
+<td><strong>Lives</strong></td>
+<td>"Nyawa" siswa (max 3) — berkurang saat terdeteksi tab switch</td>
+</tr>
+<tr>
+<td><strong>Snapshot</strong></td>
+<td>Cache soal di localStorage untuk recovery saat resume</td>
+</tr>
+<tr>
+<td><strong>Block</strong></td>
+<td>Unit konten dalam course (text / media / quiz)</td>
+</tr>
+<tr>
+<td><strong>Topic</strong></td>
+<td>Sub-bab dalam Course</td>
+</tr>
+<tr>
+<td><strong>Course</strong></td>
+<td>Mata pelajaran / paket pembelajaran</td>
+</tr>
+<tr>
+<td><strong>Examination</strong></td>
+<td>Ujian yang dijadwalkan teacher untuk student</td>
+</tr>
+<tr>
+<td><strong>Disqualified</strong></td>
+<td>Student yang kehabisan lives (3 tab switches)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-special-terminology-istilah-khusus">3. Special Terminology (Istilah Khusus)</h2>
+<table>
+<thead>
+<tr>
+<th>Istilah</th>
+<th>Definisi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tab switch</strong></td>
+<td>Aksi keluar dari halaman ujian ke tab lain (window.blur)</td>
+</tr>
+<tr>
+<td><strong>Fullscreen guard</strong></td>
+<td>Hook yang memaksa fullscreen + detect escape</td>
+</tr>
+<tr>
+<td><strong>Auto-save</strong></td>
+<td>Mekanisme simpan jawaban otomatis setiap X detik</td>
+</tr>
+<tr>
+<td><strong>Resume</strong></td>
+<td>Lanjut ujian setelah disconnect (data dari localStorage)</td>
+</tr>
+<tr>
+<td><strong>Question type</strong></td>
+<td>Tipe soal: <code>single</code>, <code>multiple</code>, <code>true_false</code>, <code>matching</code>, <code>short_answer</code></td>
+</tr>
+<tr>
+<td><strong>Matching pair</strong></td>
+<td>Pasangan sisi kiri-kanan untuk soal matching</td>
+</tr>
+<tr>
+<td><strong>Side</strong></td>
+<td>Posisi opsi di soal matching (<code>left</code> / <code>right</code>)</td>
+</tr>
+<tr>
+<td><strong>Bearer token</strong></td>
+<td>Format <code>Authorization: Bearer &lt;token&gt;</code></td>
+</tr>
+<tr>
+<td><strong>Route group</strong></td>
+<td>Next.js folder <code>(name)</code> yang tidak masuk URL (untuk layout grouping)</td>
+</tr>
+<tr>
+<td><strong>App Router</strong></td>
+<td>Next.js 13+ routing system (vs legacy Pages Router)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-testing-location-lokasi-pengujian">4. Testing Location (Lokasi Pengujian)</h2>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>URL</th>
+<th>Tujuan</th>
+<th>Akses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Local</strong></td>
+<td><code>http://localhost:3000</code> + <code>http://localhost:8080/api/v1</code></td>
+<td>Development testing</td>
+<td>Developer laptop</td>
+</tr>
+<tr>
+<td><strong>Staging</strong></td>
+<td><code>https://staging.stuudi.app</code> (planned)</td>
+<td>Pre-production QA</td>
+<td>QA team</td>
+</tr>
+<tr>
+<td><strong>Production</strong></td>
+<td><code>https://stuudi.vercel.app</code></td>
+<td>Smoke test only</td>
+<td>Public</td>
+</tr>
+<tr>
+<td><strong>Mock backend</strong></td>
+<td>MSW (Mock Service Worker)</td>
+<td>Unit test isolation</td>
+<td>Test runner</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Diagram setup pengujian:</strong></p>
+<div class="codehilite"><pre><span></span><code>┌────────────────────────────────────────────────────────────────┐
+│  QA Tester                                                       │
+│  (Browser Chrome 120+, Firefox 120+, Safari 17+)                 │
+└────────────┬───────────────────────────────────────────────────┘
+             │ HTTPS
+             ▼
+┌────────────────────────────────────────────────────────────────┐
+│  Staging (https://staging.stuudi.app)                            │
+│  ┌──────────────────┐         ┌──────────────────┐              │
+│  │  Next.js 16      │ ──────► │  lms-project     │              │
+│  │  (Arteri FE)     │ HTTPS   │  (Arteri BE)     │              │
+│  └──────────────────┘         └──────────────────┘              │
+└────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<hr />
+<h2 id="5-testing-schedule-jadwal-pengujian">5. Testing Schedule (Jadwal Pengujian)</h2>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Kegiatan</th>
+<th>Tanggal Mulai</th>
+<th>Tanggal Selesai</th>
+<th>PIC</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Test Plan Review</td>
+<td>2026-06-21</td>
+<td>2026-06-22</td>
+<td>Irza</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Test Case Creation (existing)</td>
+<td>2026-06-19</td>
+<td>2026-06-20</td>
+<td>Irza</td>
+<td>✅ Done (76 TC)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>API Test Case Creation (existing)</td>
+<td>2026-06-20</td>
+<td>2026-06-20</td>
+<td>Irza</td>
+<td>✅ Done (100 TC)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>E2E Automation Setup (Playwright)</td>
+<td>2026-06-20</td>
+<td>2026-06-21</td>
+<td>Irza</td>
+<td>✅ Done (5 specs)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Iterasi 1: CBT engine full test</strong></td>
+<td>2026-06-22</td>
+<td>2026-06-28</td>
+<td>QA Team</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Iterasi 2: Auth &amp; role-based</strong></td>
+<td>2026-06-29</td>
+<td>2026-07-03</td>
+<td>QA Team</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Iterasi 3: Course &amp; content</strong></td>
+<td>2026-07-06</td>
+<td>2026-07-10</td>
+<td>QA Team</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Iterasi 4: Admin dashboard</strong></td>
+<td>2026-07-13</td>
+<td>2026-07-17</td>
+<td>QA Team</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Regression Test (full)</td>
+<td>2026-07-20</td>
+<td>2026-07-22</td>
+<td>QA Team</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>10</td>
+<td>UAT (User Acceptance Test)</td>
+<td>2026-07-23</td>
+<td>2026-07-24</td>
+<td>Stakeholder</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Sign-off &amp; Release v1.0</td>
+<td>2026-07-25</td>
+<td>2026-07-25</td>
+<td>PM</td>
+<td>⏳ Planned</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-testing-quality-criteria-kriteria-kualitas-pengujian">6. Testing Quality Criteria (Kriteria Kualitas Pengujian)</h2>
+<table>
+<thead>
+<tr>
+<th>Kriteria</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kesiapan environment (staging)</td>
+<td>100% deployed &amp; smoke test passed</td>
+</tr>
+<tr>
+<td>Ketersediaan test data</td>
+<td>Akun student + teacher test tersedia di staging</td>
+</tr>
+<tr>
+<td>Build stability</td>
+<td>Build sukses tanpa critical blocker</td>
+</tr>
+<tr>
+<td>Kesiapan test case</td>
+<td>176 TC finalized (76 UI + 100 API) ✅</td>
+</tr>
+<tr>
+<td>Code coverage (unit)</td>
+<td>Target minimal 70% untuk CBT engine</td>
+</tr>
+<tr>
+<td>E2E coverage</td>
+<td>Minimal 1 happy-path + 1 sad-path per fitur critical</td>
+</tr>
+<tr>
+<td>Dokumentasi</td>
+<td>Test plan + test summary report</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-entry-criteria-kriteria-masuk">7. Entry Criteria (Kriteria Masuk)</h2>
+<ul>
+<li>[x] Spesifikasi kebutuhan (requirements) sudah didokumentasikan di <code>API_ENDPOINTS</code></li>
+<li>[x] Test case UI sudah dibuat (76 TC) di Google Sheet</li>
+<li>[x] Test case API sudah dibuat (100 TC) di Google Sheet</li>
+<li>[x] Environment pengujian (local + staging) tersedia</li>
+<li>[x] Test data (akun student + teacher test) sudah dibuat</li>
+<li>[x] Tools testing terinstall (Vitest, Playwright, Postman, VS Code)</li>
+<li>[x] Backend <code>lms-project</code> running di <code>localhost:8080</code> (untuk E2E)</li>
+<li>[x] E2E automation setup (5 spec files) sudah dibuat</li>
+</ul>
+<hr />
+<h2 id="8-exit-suspension-criteria-kriteria-keluar-penangguhan">8. Exit / Suspension Criteria (Kriteria Keluar / Penangguhan)</h2>
+<p><strong>Suspension (pengujian ditunda):</strong>
+- Build gagal deploy ke staging
+- Backend <code>lms-project</code> down &gt; 30 menit
+- Ada critical bug yang block &gt; 50% test case CBT
+- Test environment tidak stabil (sering timeout)</p>
+<p><strong>Resume (pengujian dilanjutkan):</strong>
+- Build sudah stabil di staging
+- Backend sudah running normal
+- Critical bug sudah diperbaiki
+- Environment sudah stabil minimal 1 jam</p>
+<hr />
+<h2 id="9-completion-criteria-kriteria-penyelesaian">9. Completion Criteria (Kriteria Penyelesaian)</h2>
+<ul>
+<li>[ ] <strong>100% CBT test case</strong> dieksekusi (highest priority, 18 TC)</li>
+<li>[ ] Minimal <strong>95% test case</strong> total dieksekusi (167 dari 176)</li>
+<li>[ ] <strong>0 critical bug</strong> open</li>
+<li>[ ] <strong>0 high-priority bug</strong> open (atau di-defer untuk v1.1)</li>
+<li>[ ] Semua <strong>regression test</strong> passed</li>
+<li>[ ] Test summary report sudah dibuat</li>
+<li>[ ] Sign-off dari stakeholder</li>
+</ul>
+<hr />
+<h2 id="10-environmental-requirements-kebutuhan-lingkungan">10. Environmental Requirements (Kebutuhan Lingkungan)</h2>
+<h3 id="101-perangkat-keras-hardware">10.1. Perangkat Keras (Hardware)</h3>
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Spec</th>
+<th>Jumlah</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Laptop Tester</td>
+<td>RAM 16GB, SSD 512GB, i5 ke atas</td>
+<td>1 (QA)</td>
+</tr>
+<tr>
+<td>Smartphone (Android)</td>
+<td>Android 13+, 6GB RAM (responsive test)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Tablet (iPad)</td>
+<td>iPad Air, iOS 17+ (responsive test)</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-perangkat-lunak-software">10.2. Perangkat Lunak (Software)</h3>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th>Versi</th>
+<th>Kegunaan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node.js</td>
+<td>18+</td>
+<td>Runtime</td>
+</tr>
+<tr>
+<td>Google Chrome</td>
+<td>120+</td>
+<td>Browser testing (primary)</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td>120+</td>
+<td>Cross-browser</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>17+</td>
+<td>macOS testing</td>
+</tr>
+<tr>
+<td>Playwright</td>
+<td>1.61+</td>
+<td>E2E test runner</td>
+</tr>
+<tr>
+<td>Vitest</td>
+<td>4.0+</td>
+<td>Unit test runner</td>
+</tr>
+<tr>
+<td>Postman</td>
+<td>Latest</td>
+<td>API testing (manual)</td>
+</tr>
+<tr>
+<td>Newman</td>
+<td>Latest</td>
+<td>Postman CLI (automation)</td>
+</tr>
+<tr>
+<td>VS Code</td>
+<td>Latest</td>
+<td>Code editor</td>
+</tr>
+<tr>
+<td>k6</td>
+<td>Latest</td>
+<td>Load testing (planned)</td>
+</tr>
+<tr>
+<td>axe-core</td>
+<td>Latest</td>
+<td>Accessibility testing (planned)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="103-jaringan">10.3. Jaringan</h3>
+<ul>
+<li>Internet min. 10 Mbps (untuk akses staging &amp; API eksternal)</li>
+<li>Tidak ada VPN yang dibutuhkan (semua public)</li>
+</ul>
+<h3 id="104-konfigurasi-environment">10.4. Konfigurasi Environment</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Value</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BASE_URL</code></td>
+<td><code>http://localhost:3000</code></td>
+<td>Frontend dev</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_BASE_API</code></td>
+<td><code>http://localhost:8080/api/v1</code></td>
+<td>Backend API</td>
+</tr>
+<tr>
+<td><code>API_BASE_URL</code></td>
+<td><code>http://localhost:8080/api/v1</code></td>
+<td>E2E test config</td>
+</tr>
+<tr>
+<td><code>STUDENT_USER</code></td>
+<td><code>student.test@stuudi.id</code></td>
+<td>Test student</td>
+</tr>
+<tr>
+<td><code>TEACHER_USER</code></td>
+<td><code>teacher.test@stuudi.id</code></td>
+<td>Test teacher</td>
+</tr>
+<tr>
+<td>Cookie name</td>
+<td><code>access_token</code></td>
+<td>JWT storage</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-test-systems-sistem-pengujian">11. Test Systems (Sistem Pengujian)</h2>
+<table>
+<thead>
+<tr>
+<th>Komponen</th>
+<th>Deskripsi</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test case UI</strong></td>
+<td>Google Sheet "Test Cases" — 76 TC (47 positif, 29 negatif)</td>
+<td>✅ Ada</td>
+</tr>
+<tr>
+<td><strong>Test case API</strong></td>
+<td>Google Sheet "API Test Cases" — 100 TC (64 positif, 36 negatif)</td>
+<td>✅ Ada</td>
+</tr>
+<tr>
+<td><strong>Test plan</strong></td>
+<td>Dokumen ini (<code>test-plan.md</code>)</td>
+<td>✅ Ada</td>
+</tr>
+<tr>
+<td><strong>E2E scripts</strong></td>
+<td><code>e2e/*.spec.ts</code> — 5 spec files (49 test)</td>
+<td>✅ Ada</td>
+</tr>
+<tr>
+<td><strong>Unit tests</strong></td>
+<td><code>src/**/__tests__/*.test.ts(x)</code> — 13 files (35 test)</td>
+<td>✅ Ada</td>
+</tr>
+<tr>
+<td><strong>Test runner</strong></td>
+<td>Vitest config + Playwright config</td>
+<td>✅ Ada</td>
+</tr>
+<tr>
+<td><strong>CI/CD pipeline</strong></td>
+<td><code>.github/workflows/e2e.yml</code> (Playwright)</td>
+<td>✅ Ada</td>
+</tr>
+<tr>
+<td><strong>API client (Postman)</strong></td>
+<td><em>Belum dibuat</em> — planned</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td><strong>k6 load test</strong></td>
+<td><em>Belum dibuat</em> — planned</td>
+<td>⏳ Planned</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-external-factors-faktor-eksternal">12. External Factors (Faktor Eksternal)</h2>
+<ul>
+<li><strong>Backend <code>lms-project</code></strong> — harus running untuk E2E test</li>
+<li>Disimpan terpisah (bukan bagian dari frontend repo)</li>
+<li>Endpoint contract harus stabil; breaking change perlu dikoordinasikan</li>
+<li><strong>Supabase</strong> — digunakan untuk image storage (CDN <code>dllvucwgezsuhwktkwxd.supabase.co</code>)</li>
+<li>Reliability: tergantung Supabase SLA</li>
+<li><strong>Image CDN (unsplash, ui-avatars)</strong> — untuk avatar &amp; demo content</li>
+<li>Reliability: 99.9% SLA</li>
+<li><strong>Vercel</strong> — hosting frontend</li>
+<li>Reliability: 99.99% SLA</li>
+<li><strong>Tiptap editor</strong> — untuk authoring konten (dari npm)</li>
+<li>Update berkala, perlu cek breaking changes</li>
+</ul>
+<hr />
+<h2 id="13-team-composition-komposisi-tim">13. Team Composition (Komposisi Tim)</h2>
+<table>
+<thead>
+<tr>
+<th>Nama</th>
+<th>Peran</th>
+<th>Tanggung Jawab</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Irza</strong> (Muhammad Irza Dzulhika)</td>
+<td>QA Lead / Tester</td>
+<td>Test planning, execution, automation</td>
+</tr>
+<tr>
+<td><strong>Alfi</strong> (dev)</td>
+<td>Frontend Developer</td>
+<td>Bug fixing, E2E spec review</td>
+</tr>
+<tr>
+<td><strong>Dzaki</strong></td>
+<td>Support contact</td>
+<td>Issue escalation</td>
+</tr>
+<tr>
+<td><strong>Nopal</strong></td>
+<td>Support contact</td>
+<td>Issue escalation</td>
+</tr>
+<tr>
+<td><strong>Pak Aminul</strong> (PKL supervisor)</td>
+<td>Reviewer</td>
+<td>Test plan review (academic)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>External Participants:</strong> Guru/dosen pembimbing olimpiade (untuk UAT CBT)</p>
+<p><strong>Hand-off Points:</strong>
+- Developer → QA: setiap sprint / iterasi (via PR)
+- QA → Stakeholder: setiap release untuk UAT</p>
+<hr />
+<h2 id="14-revision-handover-management-manajemen-penyerahan-revisi">14. Revision Handover Management (Manajemen Penyerahan Revisi)</h2>
+<ul>
+<li><strong>Version control</strong>: Git (GitHub)</li>
+<li><strong>Build deployment</strong>: otomatis via Vercel (per push ke <code>main</code>)</li>
+<li><strong>QA testing window</strong>: minimal 1x24 jam setelah build baru di staging</li>
+<li><strong>Changelog format</strong>:
+  ```
+  [v0.1.X] 2026-06-21</li>
+<li>FIXED: Bug #123 - Login error 500 on expired token</li>
+<li>ADDED: CBT tab switch counter UI</li>
+<li>CHANGED: Redesign QuestionCard with new layout</li>
+<li>TESTED: 18 CBT test cases executed
+  ```</li>
+<li><strong>Notifikasi</strong>: GitHub Issues + Slack <code>#qa-coordination</code> (planned)</li>
+</ul>
+<hr />
+<h2 id="15-test-suite-execution-eksekusi-test-suite">15. Test Suite Execution (Eksekusi Test Suite)</h2>
+<h3 id="strategi-per-fase">Strategi per fase:</h3>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Test Suite</th>
+<th>Strategi</th>
+<th>Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Smoke</strong></td>
+<td>5 critical-path tests</td>
+<td>Automated on every PR</td>
+<td>Playwright</td>
+</tr>
+<tr>
+<td><strong>CBT regression</strong></td>
+<td>18 CBT test cases (UI) + 7 CBT E2E</td>
+<td>Automated on every PR to CBT module</td>
+<td>Vitest + Playwright</td>
+</tr>
+<tr>
+<td><strong>Auth regression</strong></td>
+<td>10 auth test cases (UI) + 10 auth E2E</td>
+<td>Automated</td>
+<td>Playwright</td>
+</tr>
+<tr>
+<td><strong>Functional</strong></td>
+<td>Per fitur (per modul)</td>
+<td>Manual + Postman untuk API</td>
+<td>Manual + Postman</td>
+</tr>
+<tr>
+<td><strong>Regression</strong></td>
+<td>Full suite</td>
+<td>Automated nightly</td>
+<td>Playwright + Vitest</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Load test (k6)</td>
+<td>Manual weekly</td>
+<td>k6 (planned)</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>OWASP Top 10 checklist</td>
+<td>Manual + automated</td>
+<td>OWASP ZAP (planned)</td>
+</tr>
+<tr>
+<td><strong>Accessibility</strong></td>
+<td>axe-core scan</td>
+<td>Automated</td>
+<td>axe-core (planned)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cara-eksekusi-arteri-specific">Cara eksekusi (Arteri-specific):</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Setup lokal</span>
+<span class="nb">cd</span><span class="w"> </span>stuudi-frontend
+cp<span class="w"> </span>.env.example<span class="w"> </span>.env.local
+<span class="c1"># Update NEXT_PUBLIC_BASE_API di .env.local</span>
+
+<span class="c1"># Install dependencies</span>
+npm<span class="w"> </span>install
+
+<span class="c1"># Install Playwright browsers</span>
+npx<span class="w"> </span>playwright<span class="w"> </span>install
+
+<span class="c1"># Unit tests</span>
+npm<span class="w"> </span><span class="nb">test</span><span class="w">                  </span><span class="c1"># Run once</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:watch<span class="w">        </span><span class="c1"># Watch mode</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:coverage<span class="w">     </span><span class="c1"># With coverage report</span>
+
+<span class="c1"># E2E tests (per module)</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:auth<span class="w">     </span><span class="c1"># Login &amp; auth</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:cbt<span class="w">      </span><span class="c1"># CBT (priority)</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:api<span class="w">      </span><span class="c1"># API integration</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:admin<span class="w">    </span><span class="c1"># Admin dashboard</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:student-dashboard<span class="w">  </span><span class="c1"># Student area</span>
+
+<span class="c1"># E2E cross-browser</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:chromium
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:firefox
+
+<span class="c1"># E2E with UI for debugging</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:ui
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:debug
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:headed
+
+<span class="c1"># Full E2E suite</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e
+
+<span class="c1"># API testing (after Postman collection ready)</span>
+newman<span class="w"> </span>run<span class="w"> </span>arteri-api.postman_collection.json
+</code></pre></div>
+
+<hr />
+<h2 id="16-potential-risks-risiko-potensial">16. Potential Risks (Risiko Potensial)</h2>
+<table>
+<thead>
+<tr>
+<th>Risiko</th>
+<th>Dampak</th>
+<th>Probabilitas</th>
+<th>Mitigasi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Backend lms-project down</strong></td>
+<td>E2E test gagal semua</td>
+<td>Medium</td>
+<td>Mock backend dengan MSW untuk unit test; fallback ke manual</td>
+</tr>
+<tr>
+<td><strong>Staging environment down</strong></td>
+<td>Testing delay</td>
+<td>Medium</td>
+<td>Local Docker compose backup (planned)</td>
+</tr>
+<tr>
+<td><strong>CBT tab switch logic berubah</strong></td>
+<td>Existing test jadi invalid</td>
+<td>Low</td>
+<td>Baca PR diff sebelum re-run</td>
+</tr>
+<tr>
+<td><strong>JWT secret rotation</strong></td>
+<td>Test token invalid</td>
+<td>Low</td>
+<td>Auto-generate test token via login API</td>
+</tr>
+<tr>
+<td><strong>Kurangnya test data untuk matching question</strong></td>
+<td>Coverage rendah</td>
+<td>Medium</td>
+<td>Auto-generate matching question di seed script</td>
+</tr>
+<tr>
+<td><strong>Tight deadline</strong></td>
+<td>Test terburu-buru</td>
+<td>High</td>
+<td>Prioritas CBT (highest impact)</td>
+</tr>
+<tr>
+<td><strong>Tim QA single person (Irza)</strong></td>
+<td>Coverage tidak maksimal</td>
+<td>High</td>
+<td>Risk-based testing; fokus CBT</td>
+</tr>
+<tr>
+<td><strong>Backend API contract berubah tanpa notice</strong></td>
+<td>Integration test gagal</td>
+<td>Medium</td>
+<td>Strict TS types → tangkap saat compile</td>
+</tr>
+<tr>
+<td><strong>Math rendering (KaTeX) edge cases</strong></td>
+<td>Soal matematika broken</td>
+<td>Low</td>
+<td>Dedicated test untuk math</td>
+</tr>
+<tr>
+<td><strong>Concurrent tab switch (race condition)</strong></td>
+<td>Lives counter bug</td>
+<td>Medium</td>
+<td>Stress test dengan 5 tab</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="17-documentation-of-changes-dokumentasi-perubahan">17. Documentation of Changes (Dokumentasi Perubahan)</h2>
+<table>
+<thead>
+<tr>
+<th>Versi</th>
+<th>Tanggal</th>
+<th>Penulis</th>
+<th>Perubahan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1.0</td>
+<td>2026-06-21</td>
+<td>Irza</td>
+<td>Initial Test Plan — berdasarkan analisis codebase arteri_elearning</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="18-appendix-lampiran">18. Appendix (Lampiran)</h2>
+<p>Dokumen pendukung:
+- <strong>Test Case UI (76 TC)</strong> — <a href="https://docs.google.com/spreadsheets/d/1Y8emF2b34iH-bxRbeD5mDtD89hG7z2ucQAc7WbTSc9w">Google Sheet</a>
+- <strong>Test Case API (100 TC)</strong> — <a href="https://docs.google.com/spreadsheets/d/1Y8emF2b34iH-bxRbeD5mDtD89hG7z2ucQAc7WbTSc9w">Google Sheet</a>
+- <strong>Frontend repo</strong> — https://github.com/irzadzulhika29/stuudi-frontend
+- <strong>Backend repo</strong> — https://github.com/azmiagr/lms-project
+- <strong>E2E spec files</strong> — <code>e2e/*.spec.ts</code> di repo
+- <strong>Unit test files</strong> — <code>src/**/__tests__/</code> di repo
+- <strong>API contract</strong> — <code>src/shared/config/constants.ts</code> (<code>API_ENDPOINTS</code>)</p>
+<hr />
+<h2 id="19-faq-pertanyaan-umum">19. FAQ (Pertanyaan Umum)</h2>
+<p><strong>Q: Mengapa CBT engine diprioritaskan?</strong>
+A: CBT adalah fitur paling kritis — ini untuk <strong>ujian olimpiade nasional</strong>. Bug di CBT bisa
+menggagalkan ujian ribuan siswa. Lives system + auto-save + timer = critical path.</p>
+<p><strong>Q: Bagaimana cara testing tab switch detection di E2E?</strong>
+A: Pakai Playwright <code>page.evaluate()</code> untuk trigger <code>window.dispatchEvent(new Event('blur'))</code>
+atau switch ke tab lain via <code>context.newPage()</code>. Verify lives counter decrement via API call.</p>
+<p><strong>Q: Kapan pakai unit test vs E2E test?</strong>
+A: <strong>Unit test</strong> untuk logic (timer, answer state, normalization). <strong>E2E test</strong> untuk full flow
+(start exam → answer → save → submit → result). Jangan duplikat.</p>
+<p><strong>Q: Bagaimana cara test auto-save tanpa tunggu 30 detik?</strong>
+A: Mock timer di Vitest (<code>vi.useFakeTimers()</code>). Di E2E, set interval auto-save pendek (override
+via env) atau tunggu real time.</p>
+<p><strong>Q: Apa beda <code>useExamTimer</code> vs <code>useAutoSave</code> vs <code>useFullscreenGuard</code>?</strong>
+A:
+- <code>useExamTimer</code> — countdown ujian, auto-submit saat habis
+- <code>useAutoSave</code> — simpan jawaban ke server periodik
+- <code>useFullscreenGuard</code> — paksa fullscreen + detect escape/tab switch</p>
+<p><strong>Q: Kenapa pakai Vitest bukan Jest?</strong>
+A: Vitest lebih cepat (Vite-based), zero-config untuk Vite/Next.js, dan support TypeScript
+native tanpa babel.</p>
+<p><strong>Q: Test mana yang harus automated duluan?</strong>
+A: Prioritas (sesuai risiko):
+1. CBT tab switch + auto-save + submit (critical path)
+2. Auth login + role-based redirect
+3. Course enrollment + content access
+4. Admin exam creation</p>
+<p><strong>Q: Berapa lama test plan ini berlaku?</strong>
+A: Berlaku per release (v1.0). Update setiap ada perubahan arsitektur besar (misal: migrasi
+Next.js Pages Router → App Router sudah dilakukan; migrasi berikut mungkin ke React Server
+Component penuh).</p>
+<hr />
+<h2 id="referensi">Referensi</h2>
+<ul>
+<li>Mulyanto, A. (2018). <em>Test Plan</em>. BINUS University – School of Information Systems.</li>
+<li>Myers, G. J., Sandler, C., &amp; Badgett, T. (2012). <em>The Art of Software Testing</em> (3rd ed.).
+  John Wiley &amp; Sons, Inc.</li>
+<li>IEEE 829 — Standard for Software Test Documentation</li>
+<li>ISTQB Foundation Level Syllabus v4.0</li>
+<li>Next.js Testing Best Practices — https://nextjs.org/docs/app/building-your-application/testing</li>
+<li>Playwright Documentation — https://playwright.dev/docs/intro</li>
+<li>Vitest Documentation — https://vitest.dev/</li>
+</ul>
+<hr />
+<h2 id="change-log-dokumen-ini">Change Log (Dokumen Ini)</h2>
+<table>
+<thead>
+<tr>
+<th>Versi</th>
+<th>Tanggal</th>
+<th>Perubahan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1.0</td>
+<td>2026-06-21</td>
+<td>Initial Test Plan — instantiated dari template BINUS, diisi spesifik untuk Arteri E-Learning berdasarkan analisis codebase</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
