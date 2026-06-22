@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>test-plan</title>
+<style>
+  @page {
+    size: A4;
+    margin: 2cm 1.8cm 2.5cm 1.8cm;
+    @bottom-center {
+      content: counter(page) " / " counter(pages);
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-size: 9pt;
+      color: #666;
+    }
+    @top-right {
+      content: "Arteri E-Learning — Test Plan v1.0";
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-size: 8pt;
+      color: #999;
+    }
+  }
+
+  body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    max-width: 100%;
+  }
+
+  h1, h2, h3, h4 {
+    color: #0f172a;
+    font-weight: 700;
+    line-height: 1.3;
+    page-break-after: avoid;
+  }
+  h1 {
+    font-size: 22pt;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 8px;
+    margin: 0 0 18px 0;
+    page-break-before: always;
+  }
+  h1:first-of-type {
+    page-break-before: avoid;
+  }
+  h2 {
+    font-size: 15pt;
+    color: #1e40af;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 5px;
+    margin: 24px 0 12px 0;
+  }
+  h3 {
+    font-size: 12.5pt;
+    color: #1e3a8a;
+    margin: 18px 0 8px 0;
+  }
+  h4 {
+    font-size: 11pt;
+    color: #334155;
+    margin: 14px 0 6px 0;
+  }
+
+  p, li { margin: 6px 0; }
+
+  ul, ol {
+    padding-left: 22px;
+    margin: 8px 0;
+  }
+  li { margin: 3px 0; }
+
+  blockquote {
+    border-left: 4px solid #3b82f6;
+    background: #f1f5f9;
+    margin: 10px 0;
+    padding: 8px 14px;
+    color: #334155;
+    font-style: italic;
+    border-radius: 0 4px 4px 0;
+  }
+
+  code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 9.5pt;
+    background: #f1f5f9;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #be185d;
+  }
+
+  pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 12px 14px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 9pt;
+    line-height: 1.45;
+    page-break-inside: avoid;
+  }
+  pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0;
+    page-break-inside: avoid;
+    font-size: 9.5pt;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #1e40af;
+    color: #fff;
+    font-weight: 600;
+    font-size: 9.5pt;
+  }
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+  tr:hover td {
+    background: #eff6ff;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 20px 0;
+  }
+
+  a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  /* Markdown extension classes */
+  .task-list-item { list-style: none; }
+  .task-list-item input[type="checkbox"] { margin-right: 6px; }
+
+  /* Header/footer table for document info */
+  .doc-info {
+    background: #f1f5f9;
+    border-left: 4px solid #2563eb;
+    padding: 12px 16px;
+    margin: 16px 0 24px 0;
+    border-radius: 0 4px 4px 0;
+    page-break-inside: avoid;
+  }
+  .doc-info table {
+    background: transparent;
+    margin: 0;
+  }
+  .doc-info th, .doc-info td {
+    background: transparent;
+    border: none;
+    padding: 3px 8px;
+    color: #1e293b;
+  }
+  .doc-info th {
+    color: #1e40af;
+    width: 30%;
+  }
+</style>
+</head>
+<body>
+<h1 id="test-plan-ifl-chapter-malang-website">Test Plan — IFL Chapter Malang Website</h1>
+<blockquote>
+<p><strong>Project:</strong> Website IFL Chapter Malang (Indonesian Future Leaders)
+<strong>Repo:</strong> https://github.com/irzadzulhika29/fe_iflchaptermalang
+<strong>Document Version:</strong> v1.0
+<strong>Date:</strong> 2026-06-22
+<strong>Prepared By:</strong> Muhammad Irza Dzulhika (QA Intern Candidate)
+<strong>Template:</strong> Based on BINUS University Test Plan Framework (Mulyanto, 2018)</p>
+</blockquote>
+<hr />
+<h2 id="document-information">Document Information</h2>
+<table class="doc-info">
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Project Name</strong></td>
+<td>IFL Chapter Malang Website (<code>website-ifl</code>)</td>
+</tr>
+<tr>
+<td><strong>Document Version</strong></td>
+<td>v1.0</td>
+</tr>
+<tr>
+<td><strong>Date</strong></td>
+<td>2026-06-22</td>
+</tr>
+<tr>
+<td><strong>Prepared By</strong></td>
+<td>Muhammad Irza Dzulhika</td>
+</tr>
+<tr>
+<td><strong>Reviewed By</strong></td>
+<td><em>(to be assigned)</em></td>
+</tr>
+<tr>
+<td><strong>Approved By</strong></td>
+<td><em>(to be assigned)</em></td>
+</tr>
+<tr>
+<td><strong>Repo</strong></td>
+<td><code>github.com/irzadzulhika29/fe_iflchaptermalang</code></td>
+</tr>
+<tr>
+<td><strong>Live URL</strong></td>
+<td>https://iflchaptermalang.org/</td>
+</tr>
+<tr>
+<td><strong>Tech Stack</strong></td>
+<td>Vite 5 + React 18 + JavaScript</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-introduction-pendahuluan">1. Introduction (Pendahuluan)</h2>
+<h3 id="11-rencana-pengujian">1.1. Rencana Pengujian</h3>
+<p>Dokumen ini menjabarkan rencana pengujian untuk <strong>Website IFL Chapter Malang</strong> — platform
+resmi chapter Indonesian Future Leaders di Malang. Website ini berfungsi sebagai pusat
+informasi chapter, platform donasi (dengan payment gateway Midtrans), portal blog/artikel,
+manajemen event, dan recruitment volunteer. Pengujian akan mencakup 7 modul fitur utama
+(authentication, blog, campaign, donation, event, profile, volunteer) + chatbot donasi
+sebagai fitur paling kompleks. <strong>Status awal: 0% test coverage</strong> — strategi pengujian
+akan dimulai dengan setup fondasi test (Vitest + Playwright + RTL) sebelum eksekusi.</p>
+<h3 id="12-tujuan-pengujian">1.2. Tujuan Pengujian</h3>
+<ul>
+<li><strong>Membangun fondasi testing</strong> dari 0% (saat ini tidak ada test file sama sekali)</li>
+<li><strong>Memvalidasi alur donasi end-to-end</strong> (paling kritis karena ada payment gateway Midtrans)</li>
+<li><strong>Memverifikasi role-based access</strong> (admin / bismar / copywriter) di 3 level proteksi</li>
+<li><strong>Mengurangi risiko regression</strong> saat ada update konten / event baru</li>
+<li><strong>Memenuhi standar kualitas</strong> untuk apply magang QA di organisasi IT/NGO</li>
+</ul>
+<h3 id="13-metodologi-pengujian">1.3. Metodologi Pengujian</h3>
+<table>
+<thead>
+<tr>
+<th>Metode</th>
+<th>Tools</th>
+<th>Coverage Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Black-box functional</strong></td>
+<td>Manual + Postman</td>
+<td>Semua fitur user-facing</td>
+</tr>
+<tr>
+<td><strong>Component unit</strong></td>
+<td>Vitest + React Testing Library</td>
+<td>Target 50% coverage dalam 3 bulan</td>
+</tr>
+<tr>
+<td><strong>End-to-end</strong></td>
+<td>Playwright</td>
+<td>Critical paths: Auth, Donasi, Blog, Event</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>OWASP ZAP, manual probing</td>
+<td>Auth flow, role bypass, JWT</td>
+</tr>
+<tr>
+<td><strong>Payment testing</strong></td>
+<td>Midtrans sandbox</td>
+<td>Transaction success/failure/timeout</td>
+</tr>
+<tr>
+<td><strong>A11y</strong></td>
+<td>axe-core (planned)</td>
+<td>Form labels, keyboard nav</td>
+</tr>
+<tr>
+<td><strong>Visual regression</strong></td>
+<td>Percy / Chromatic (planned)</td>
+<td>Public pages, donation flow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="14-objek-pengujian">1.4. Objek Pengujian</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Technology</th>
+<th>Test Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>Vite 5.4 + React 18.2 (SPA)</td>
+<td>Full UI + client logic</td>
+</tr>
+<tr>
+<td><strong>Routing</strong></td>
+<td>React Router DOM 6.17 (client-side)</td>
+<td>33 routes (16 public, 5 auth, 10 protected, 2 error)</td>
+</tr>
+<tr>
+<td><strong>State</strong></td>
+<td>TanStack React Query 5.8</td>
+<td>Server state caching</td>
+</tr>
+<tr>
+<td><strong>HTTP Client</strong></td>
+<td>Axios 1.7 + jwt-decode</td>
+<td>All API calls</td>
+</tr>
+<tr>
+<td><strong>Auth</strong></td>
+<td>JWT (custom) + Google OAuth</td>
+<td>Login, register, role guard</td>
+</tr>
+<tr>
+<td><strong>Rich text</strong></td>
+<td>CKEditor 5</td>
+<td>Blog authoring</td>
+</tr>
+<tr>
+<td><strong>Image</strong></td>
+<td>ImageKit CDN</td>
+<td>Image upload/transform</td>
+</tr>
+<tr>
+<td><strong>Payment</strong></td>
+<td>Midtrans Snap</td>
+<td>Donation flow</td>
+</tr>
+<tr>
+<td><strong>Backend (out of scope)</strong></td>
+<td>External API (IFL backend)</td>
+<td>E2E only</td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-arsitektur-sistem-yang-diuji">1.5. Arsitektur Sistem yang Diuji</h3>
+<div class="codehilite"><pre><span></span><code>┌─────────────────────────────────────────────────────────────────┐
+│         Browser (SPA — Client-side rendered)                    │
+│              Vite 5 + React 18.2 + JavaScript                  │
+│  ┌──────────────────────────────────────────────────────┐      │
+│  │  src/App.jsx          (Router utama, 33 routes)       │      │
+│  │  src/routes/          (ProtectedRoute 3 level)        │      │
+│  │  src/components/      (67 components)                 │      │
+│  │    └── chatbot/       (13 components, donation flow) │      │
+│  │  src/features/        (7 modul: auth, blog, dll)      │      │
+│  │  src/page/            (root/dashboard/auth pages)     │      │
+│  │  src/layouts/         (9 layouts)                     │      │
+│  │  src/libs/api         (Axios instance)                │      │
+│  │  src/libs/midtrans    (Payment integration)          │      │
+│  └──────────────────────────────────────────────────────┘      │
+└────────────┬────────────────────┬──────────────────┬────────────┘
+             │ HTTPS             │ HTTPS            │ HTTPS
+             ▼                   ▼                  ▼
+┌─────────────────────┐  ┌────────────────┐  ┌────────────────┐
+│ IFL Backend API     │  │ Midtrans       │  │ Google OAuth   │
+│ (external,          │  │ Payment Gateway│  │ (login sosial) │
+│  out of scope)      │  │                │  │                │
+└─────────────────────┘  └────────────────┘  └────────────────┘
+             │
+             ▼
+┌─────────────────────┐
+│ ImageKit CDN        │
+│ (image storage)     │
+└─────────────────────┘
+</code></pre></div>
+
+<h3 id="16-pembagian-sistem-untuk-pengujian-unit-dan-integrasi">1.6. Pembagian Sistem untuk Pengujian Unit dan Integrasi</h3>
+<table>
+<thead>
+<tr>
+<th>Test Level</th>
+<th>Target</th>
+<th>Tools</th>
+<th>Lokasi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unit test</strong></td>
+<td>Pure functions, isolated components</td>
+<td>Vitest + RTL</td>
+<td><code>src/**/__tests__/</code> (to be created)</td>
+</tr>
+<tr>
+<td><strong>Component integration</strong></td>
+<td>Component + React Query</td>
+<td>Vitest + RTL</td>
+<td><code>src/**/__tests__/</code></td>
+</tr>
+<tr>
+<td><strong>Hook test</strong></td>
+<td>Custom hooks (auth, blog, dll)</td>
+<td>Vitest + RTL</td>
+<td><code>src/features/*/hooks/__tests__/</code></td>
+</tr>
+<tr>
+<td><strong>API integration</strong></td>
+<td>Axios calls mocked via MSW</td>
+<td>Vitest</td>
+<td><code>src/libs/api/__tests__/</code></td>
+</tr>
+<tr>
+<td><strong>E2E</strong></td>
+<td>Full user flow</td>
+<td>Playwright</td>
+<td><code>e2e/*.spec.ts</code> (to be created)</td>
+</tr>
+<tr>
+<td><strong>Manual</strong></td>
+<td>Visual, exploratory</td>
+<td>Manual + screenshots</td>
+<td>Staging</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-test-items-item-pengujian">2. Test Items (Item Pengujian)</h2>
+<h3 id="21-item-yang-akan-diuji">2.1. Item yang Akan Diuji</h3>
+<h4 id="a-authentication-authorization-high-priority">A. <strong>Authentication &amp; Authorization</strong> (HIGH PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AUTH-01</td>
+<td>Login form (email + password)</td>
+<td>UI/Functional</td>
+<td><code>src/features/authentication/</code></td>
+</tr>
+<tr>
+<td>AUTH-02</td>
+<td>Register form (validation)</td>
+<td>UI/Functional</td>
+<td><code>src/page/auth/RegisterPage.jsx</code></td>
+</tr>
+<tr>
+<td>AUTH-03</td>
+<td>Forgot password flow</td>
+<td>UI/Functional</td>
+<td><code>src/page/auth/ForgotPasswordPage.jsx</code></td>
+</tr>
+<tr>
+<td>AUTH-04</td>
+<td>Email verification</td>
+<td>Integration</td>
+<td><code>src/page/auth/VerifyPage.jsx</code></td>
+</tr>
+<tr>
+<td>AUTH-05</td>
+<td>Google OAuth callback</td>
+<td>Integration</td>
+<td><code>src/page/auth/GoogleCallbackPage.jsx</code></td>
+</tr>
+<tr>
+<td>AUTH-06</td>
+<td>JWT token storage &amp; refresh</td>
+<td>Integration</td>
+<td><code>src/libs/api</code> + <code>jwt-decode</code></td>
+</tr>
+<tr>
+<td>AUTH-07</td>
+<td>Logout (clear token, redirect)</td>
+<td>UI/Functional</td>
+<td><code>src/features/authentication/</code></td>
+</tr>
+<tr>
+<td>AUTH-08</td>
+<td>ProtectedToken route guard</td>
+<td>Integration</td>
+<td><code>src/routes/ProtectedToken.jsx</code></td>
+</tr>
+<tr>
+<td>AUTH-09</td>
+<td>ProtectedDashboard route guard</td>
+<td>Integration</td>
+<td><code>src/routes/ProtectedDashboard.jsx</code></td>
+</tr>
+<tr>
+<td>AUTH-10</td>
+<td>ProtectedRoles (admin/bismar/copywriter)</td>
+<td>Security</td>
+<td><code>src/routes/ProtectedRoles.jsx</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="b-public-pages-medium-priority">B. <strong>Public Pages</strong> (MEDIUM PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PUB-01</td>
+<td>Home page (hero, about, programs)</td>
+<td>UI/Visual</td>
+<td><code>src/page/root/HomePage.jsx</code></td>
+</tr>
+<tr>
+<td>PUB-02</td>
+<td>About page</td>
+<td>UI/Visual</td>
+<td><code>src/page/root/AboutPage.jsx</code></td>
+</tr>
+<tr>
+<td>PUB-03</td>
+<td>Event listing</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/EventPage.jsx</code></td>
+</tr>
+<tr>
+<td>PUB-04</td>
+<td>Project listing</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/ProjectPage.jsx</code></td>
+</tr>
+<tr>
+<td>PUB-05</td>
+<td>Department pages (nondept, cdsi, bismar, dpp, hrd, comper)</td>
+<td>UI/Visual</td>
+<td><code>src/page/root/</code></td>
+</tr>
+<tr>
+<td>PUB-06</td>
+<td>Blog listing</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/BlogPage.jsx</code></td>
+</tr>
+<tr>
+<td>PUB-07</td>
+<td>Single blog post (rich text)</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/SingleBlogPage.jsx</code></td>
+</tr>
+<tr>
+<td>PUB-08</td>
+<td>Donation listing</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/DonationPage.jsx</code></td>
+</tr>
+<tr>
+<td>PUB-09</td>
+<td>Single donation campaign</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/SingleDonationPage.jsx</code></td>
+</tr>
+<tr>
+<td>PUB-10</td>
+<td>404 Not Found page</td>
+<td>UI/Visual</td>
+<td><code>src/page/NotFoundPage.jsx</code></td>
+</tr>
+<tr>
+<td>PUB-11</td>
+<td>Coming Soon page</td>
+<td>UI/Visual</td>
+<td><code>src/page/ComingSoon.jsx</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="c-donation-payment-highest-priority-critical">C. <strong>Donation &amp; Payment</strong> (HIGHEST PRIORITY — CRITICAL)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DON-01</td>
+<td>Browse donation campaigns</td>
+<td>UI/Functional</td>
+<td><code>src/features/donation/</code></td>
+</tr>
+<tr>
+<td>DON-02</td>
+<td>View campaign detail</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/SingleDonationPage.jsx</code></td>
+</tr>
+<tr>
+<td>DON-03</td>
+<td><strong>Start chatbot donation flow</strong></td>
+<td>Critical</td>
+<td><code>src/page/root/ChatbotPage.jsx</code></td>
+</tr>
+<tr>
+<td>DON-04</td>
+<td>Chatbot composer (input)</td>
+<td>UI/Functional</td>
+<td><code>src/components/chatbot/chatcomposer/</code></td>
+</tr>
+<tr>
+<td>DON-05</td>
+<td>Chatbot quick replies</td>
+<td>UI/Functional</td>
+<td><code>src/components/chatbot/quickreply/</code></td>
+</tr>
+<tr>
+<td>DON-06</td>
+<td>Chatbot validation feedback</td>
+<td>UI/Functional</td>
+<td><code>src/components/chatbot/validationfeddback/</code></td>
+</tr>
+<tr>
+<td>DON-07</td>
+<td>Chatbot summary card</td>
+<td>UI/Functional</td>
+<td><code>src/components/chatbot/summarycard/</code></td>
+</tr>
+<tr>
+<td>DON-08</td>
+<td><strong>Midtrans payment integration</strong></td>
+<td>Critical</td>
+<td><code>src/libs/midtrans/</code></td>
+</tr>
+<tr>
+<td>DON-09</td>
+<td>Payment info display</td>
+<td>UI/Functional</td>
+<td><code>src/components/chatbot/paymentinfo/</code></td>
+</tr>
+<tr>
+<td>DON-10</td>
+<td>Payment success page</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/PaymentSuccessPage.jsx</code></td>
+</tr>
+<tr>
+<td>DON-11</td>
+<td>Payment timeout/failure</td>
+<td>Edge case</td>
+<td><code>src/components/chatbot/successmodal/</code></td>
+</tr>
+<tr>
+<td>DON-12</td>
+<td>QRIS donation flow</td>
+<td>UI/Functional</td>
+<td><code>src/components/donationpayment/</code></td>
+</tr>
+<tr>
+<td>DON-13</td>
+<td>Donation confirmation modal</td>
+<td>UI/Functional</td>
+<td><code>src/components/chatbot/successmodal/</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="d-blog-content-medium-priority">D. <strong>Blog &amp; Content</strong> (MEDIUM PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BLG-01</td>
+<td>Blog listing (pagination)</td>
+<td>UI/Functional</td>
+<td><code>src/features/blog/</code></td>
+</tr>
+<tr>
+<td>BLG-02</td>
+<td>Single blog post view</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/SingleBlogPage.jsx</code></td>
+</tr>
+<tr>
+<td>BLG-03</td>
+<td>Search blog posts</td>
+<td>UI/Functional</td>
+<td><code>src/components/searchbar/</code></td>
+</tr>
+<tr>
+<td>BLG-04</td>
+<td>Blog categories filter</td>
+<td>UI/Functional</td>
+<td><code>src/features/blog/</code></td>
+</tr>
+<tr>
+<td>BLG-05</td>
+<td><strong>Admin: Add blog (CKEditor)</strong></td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/AddBlogPage.jsx</code></td>
+</tr>
+<tr>
+<td>BLG-06</td>
+<td><strong>Admin: Edit blog</strong></td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/EditBlogPage.jsx</code></td>
+</tr>
+<tr>
+<td>BLG-07</td>
+<td><strong>Admin: Delete blog</strong></td>
+<td>Integration</td>
+<td><code>src/features/blog/services/</code></td>
+</tr>
+<tr>
+<td>BLG-08</td>
+<td>CKEditor 5 content authoring</td>
+<td>UI/Functional</td>
+<td><code>@ckeditor/ckeditor5-react</code></td>
+</tr>
+<tr>
+<td>BLG-09</td>
+<td>Blog image upload (ImageKit)</td>
+<td>Integration</td>
+<td><code>imagekitio-react</code></td>
+</tr>
+<tr>
+<td>BLG-10</td>
+<td>Blog categories management</td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/BlogCategories.jsx</code></td>
+</tr>
+<tr>
+<td>BLG-11</td>
+<td>Blog detail admin view</td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/DetailBlogPage.jsx</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="e-event-management-medium-priority">E. <strong>Event Management</strong> (MEDIUM PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EVT-01</td>
+<td>Public event listing</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/EventPage.jsx</code></td>
+</tr>
+<tr>
+<td>EVT-02</td>
+<td>Event detail page</td>
+<td>UI/Functional</td>
+<td><code>src/features/event/</code></td>
+</tr>
+<tr>
+<td>EVT-03</td>
+<td><strong>Admin: Event management</strong></td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/EventManagementPage.jsx</code></td>
+</tr>
+<tr>
+<td>EVT-04</td>
+<td>Event registration flow</td>
+<td>Integration</td>
+<td><code>src/features/event/services/</code></td>
+</tr>
+<tr>
+<td>EVT-05</td>
+<td>Event categories &amp; filters</td>
+<td>UI/Functional</td>
+<td><code>src/features/event/</code></td>
+</tr>
+<tr>
+<td>EVT-06</td>
+<td>Event chatbot (jika ada)</td>
+<td>UI/Functional</td>
+<td><code>src/layouts/event/chatbot/</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="f-volunteer-management-medium-priority">F. <strong>Volunteer Management</strong> (MEDIUM PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VOL-01</td>
+<td>Public volunteer info</td>
+<td>UI/Visual</td>
+<td><code>src/components/volunteer/</code></td>
+</tr>
+<tr>
+<td>VOL-02</td>
+<td>Volunteer registration form</td>
+<td>UI/Functional</td>
+<td><code>src/features/volunteer/</code></td>
+</tr>
+<tr>
+<td>VOL-03</td>
+<td><strong>Admin: Volunteer list</strong></td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/VolunteerPage.jsx</code></td>
+</tr>
+<tr>
+<td>VOL-04</td>
+<td>Volunteer approval/rejection</td>
+<td>Integration</td>
+<td><code>src/features/volunteer/services/</code></td>
+</tr>
+<tr>
+<td>VOL-05</td>
+<td>Volunteer profile matching</td>
+<td>Integration</td>
+<td><code>src/features/volunteer/api/</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="g-user-profile-low-priority">G. <strong>User Profile</strong> (LOW PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PROF-01</td>
+<td>View own profile</td>
+<td>UI/Functional</td>
+<td><code>src/page/root/ProfilePage.jsx</code></td>
+</tr>
+<tr>
+<td>PROF-02</td>
+<td>Edit profile</td>
+<td>UI/Functional</td>
+<td><code>src/features/profile/</code></td>
+</tr>
+<tr>
+<td>PROF-03</td>
+<td>Profile picture upload (ImageKit)</td>
+<td>Integration</td>
+<td><code>react-cropper</code> + <code>imagekitio-react</code></td>
+</tr>
+<tr>
+<td>PROF-04</td>
+<td>Profile picture crop</td>
+<td>UI/Functional</td>
+<td><code>react-cropper</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="h-admin-dashboard-medium-priority">H. <strong>Admin Dashboard</strong> (MEDIUM PRIORITY)</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Item</th>
+<th>Tipe</th>
+<th>Modul Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ADM-01</td>
+<td>Admin dashboard home</td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/DashboardPage.jsx</code></td>
+</tr>
+<tr>
+<td>ADM-02</td>
+<td>User management (admin only)</td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/UserPage.jsx</code></td>
+</tr>
+<tr>
+<td>ADM-03</td>
+<td>Campaign management (admin + bismar)</td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/CampaignPage.jsx</code></td>
+</tr>
+<tr>
+<td>ADM-04</td>
+<td>Donation history (admin + bismar)</td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/DonationHistory.jsx</code></td>
+</tr>
+<tr>
+<td>ADM-05</td>
+<td>Campaign categories</td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/CampaignCategories.jsx</code></td>
+</tr>
+<tr>
+<td>ADM-06</td>
+<td>Proposal management</td>
+<td>UI/Functional</td>
+<td><code>src/page/dashboard/proposal/</code></td>
+</tr>
+<tr>
+<td>ADM-07</td>
+<td>Products (soon)</td>
+<td>—</td>
+<td><code>src/page/dashboard/products/</code></td>
+</tr>
+<tr>
+<td>ADM-08</td>
+<td>Orders (soon)</td>
+<td>—</td>
+<td><code>src/page/dashboard/orders/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-item-yang-tidak-akan-diuji">2.2. Item yang TIDAK Akan Diuji</h3>
+<ul>
+<li><strong>IFL Backend API</strong> (external) — di luar scope, hanya black-box test</li>
+<li><strong>Midtrans Payment Gateway</strong> (3rd party) — hanya test integration, bukan internal Midtrans</li>
+<li><strong>Google OAuth provider</strong> — 3rd party, hanya test callback flow</li>
+<li><strong>ImageKit CDN</strong> — 3rd party, hanya test upload/transform response</li>
+<li><strong>Email delivery</strong> (verification, forgot password) — out of scope</li>
+<li><strong>Mobile native app</strong> — tidak ada, hanya web responsive</li>
+<li><strong>Cross-browser legacy</strong> (IE11) — target browser modern</li>
+<li><strong>Performance under 10K concurrent</strong> — akan diukur terpisah</li>
+<li><strong>Penetration testing</strong> — out of scope</li>
+</ul>
+<h3 id="23-definisi-istilah-penting">2.3. Definisi Istilah Penting</h3>
+<table>
+<thead>
+<tr>
+<th>Istilah</th>
+<th>Definisi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IFL</strong></td>
+<td>Indonesian Future Leaders — organisasi</td>
+</tr>
+<tr>
+<td><strong>Chapter</strong></td>
+<td>Cabang daerah (Malang)</td>
+</tr>
+<tr>
+<td><strong>Chatbot Donasi</strong></td>
+<td>UI conversational untuk input nominal donasi</td>
+</tr>
+<tr>
+<td><strong>Midtrans</strong></td>
+<td>Payment gateway Indonesia (Snap, Core API)</td>
+</tr>
+<tr>
+<td><strong>Snap</strong></td>
+<td>Midtrans pop-up payment UI</td>
+</tr>
+<tr>
+<td><strong>QRIS</strong></td>
+<td>Quick Response Code Indonesia Standard (payment)</td>
+</tr>
+<tr>
+<td><strong>Campaign</strong></td>
+<td>Program donasi yang punya target nominal</td>
+</tr>
+<tr>
+<td><strong>Bismar</strong></td>
+<td>Role internal IFL untuk tim campaign/donasi</td>
+</tr>
+<tr>
+<td><strong>Copywriter</strong></td>
+<td>Role internal IFL untuk content writer</td>
+</tr>
+<tr>
+<td><strong>CKEditor</strong></td>
+<td>Rich text editor untuk blog admin</td>
+</tr>
+<tr>
+<td><strong>ImageKit</strong></td>
+<td>CDN + image transformation service</td>
+</tr>
+<tr>
+<td><strong>ProtectedRoute</strong></td>
+<td>HOC React Router untuk guard role-based</td>
+</tr>
+<tr>
+<td><strong>React Query</strong></td>
+<td>Library untuk server state management</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-special-terminology-istilah-khusus">3. Special Terminology (Istilah Khusus)</h2>
+<table>
+<thead>
+<tr>
+<th>Istilah</th>
+<th>Definisi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Snap Token</strong></td>
+<td>Token dari Midtrans untuk membuka pop-up payment</td>
+</tr>
+<tr>
+<td><strong>Transaction ID</strong></td>
+<td>ID unik untuk satu transaksi donasi</td>
+</tr>
+<tr>
+<td><strong>Settlement</strong></td>
+<td>Proses Midtrans mengirim dana ke rekening IFL</td>
+</tr>
+<tr>
+<td><strong>Donor</strong></td>
+<td>User yang berdonasi</td>
+</tr>
+<tr>
+<td><strong>Quick reply</strong></td>
+<td>Tombol pilihan cepat di chatbot</td>
+</tr>
+<tr>
+<td><strong>Composer</strong></td>
+<td>Area input user di chatbot</td>
+</tr>
+<tr>
+<td><strong>Validation feedback</strong></td>
+<td>Pesan error/success di chatbot</td>
+</tr>
+<tr>
+<td><strong>CDA</strong></td>
+<td>Continuous Donor Acquisition</td>
+</tr>
+<tr>
+<td><strong>Recurring donation</strong></td>
+<td>Donasi rutin (bulanan) — planned feature</td>
+</tr>
+<tr>
+<td><strong>Voucher</strong></td>
+<td>Kode diskon / promo donasi</td>
+</tr>
+<tr>
+<td><strong>Token JWT</strong></td>
+<td>JSON Web Token untuk authentication (custom impl)</td>
+</tr>
+<tr>
+<td><strong>SPA</strong></td>
+<td>Single Page Application — semua routing client-side</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-testing-location-lokasi-pengujian">4. Testing Location (Lokasi Pengujian)</h2>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>URL</th>
+<th>Tujuan</th>
+<th>Akses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Local dev</strong></td>
+<td><code>http://localhost:5173</code> (Vite default)</td>
+<td>Development</td>
+<td>Developer laptop</td>
+</tr>
+<tr>
+<td><strong>Staging</strong></td>
+<td><em>(to be set up)</em></td>
+<td>Pre-production QA</td>
+<td>QA team</td>
+</tr>
+<tr>
+<td><strong>Production</strong></td>
+<td><code>https://iflchaptermalang.org/</code></td>
+<td>Smoke test only</td>
+<td>Public</td>
+</tr>
+<tr>
+<td><strong>Midtrans sandbox</strong></td>
+<td><code>https://app.sandbox.midtrans.com</code></td>
+<td>Payment testing</td>
+<td>Test cards</td>
+</tr>
+<tr>
+<td><strong>Mock backend</strong></td>
+<td>MSW (Mock Service Worker)</td>
+<td>Unit test isolation</td>
+<td>Test runner</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Diagram setup pengujian:</strong></p>
+<div class="codehilite"><pre><span></span><code>┌────────────────────────────────────────────────────────────────┐
+│  QA Tester                                                       │
+│  (Chrome 120+, Firefox 120+, Safari 17+, Edge 120+)              │
+└────────────┬───────────────────────────────────────────────────┘
+             │ HTTPS
+             ▼
+┌────────────────────────────────────────────────────────────────┐
+│  Staging (https://staging.iflchaptermalang.org)                   │
+│  ┌──────────────────┐         ┌──────────────────┐              │
+│  │  Vite + React    │ ──────► │  IFL Backend API │              │
+│  │  (website-ifl)   │ HTTPS   │  (external)      │              │
+│  └──────────────────┘         └──────────────────┘              │
+│         │                                                       │
+│         │ HTTPS                                                 │
+│         ▼                                                       │
+│  ┌──────────────────┐                                           │
+│  │  Midtrans Snap   │ (sandbox for testing)                      │
+│  └──────────────────┘                                           │
+└────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<hr />
+<h2 id="5-testing-schedule-jadwal-pengujian">5. Testing Schedule (Jadwal Pengujian)</h2>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Kegiatan</th>
+<th>Tanggal Mulai</th>
+<th>Tanggal Selesai</th>
+<th>PIC</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Test Plan Review</td>
+<td>2026-06-22</td>
+<td>2026-06-22</td>
+<td>Irza</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Phase 0: Setup test framework</strong> (Vitest + RTL + Playwright)</td>
+<td>2026-06-23</td>
+<td>2026-06-25</td>
+<td>Dev</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Phase 1: Smoke test critical paths</strong> (E2E)</td>
+<td>2026-06-26</td>
+<td>2026-06-28</td>
+<td>QA</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Phase 2: Auth &amp; role-based</strong></td>
+<td>2026-06-29</td>
+<td>2026-07-01</td>
+<td>QA</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Phase 3: Donasi + Midtrans</strong></td>
+<td>2026-07-02</td>
+<td>2026-07-08</td>
+<td>QA</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Phase 4: Blog + CKEditor</strong></td>
+<td>2026-07-09</td>
+<td>2026-07-13</td>
+<td>QA</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Phase 5: Event + Volunteer</strong></td>
+<td>2026-07-14</td>
+<td>2026-07-18</td>
+<td>QA</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Phase 6: Public pages</strong></td>
+<td>2026-07-19</td>
+<td>2026-07-22</td>
+<td>QA</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Phase 7: Admin dashboard</strong></td>
+<td>2026-07-23</td>
+<td>2026-07-27</td>
+<td>QA</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Regression Test (full)</td>
+<td>2026-07-28</td>
+<td>2026-07-30</td>
+<td>QA</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>11</td>
+<td>UAT (User Acceptance Test)</td>
+<td>2026-07-31</td>
+<td>2026-08-01</td>
+<td>Stakeholder</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Sign-off &amp; Release v2.0</td>
+<td>2026-08-02</td>
+<td>2026-08-02</td>
+<td>PM</td>
+<td>⏳ Planned</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-testing-quality-criteria-kriteria-kualitas-pengujian">6. Testing Quality Criteria (Kriteria Kualitas Pengujian)</h2>
+<table>
+<thead>
+<tr>
+<th>Kriteria</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kesiapan environment (staging)</td>
+<td>100% deployed &amp; smoke test passed</td>
+</tr>
+<tr>
+<td>Ketersediaan test data</td>
+<td>Akun 3 role tersedia di staging</td>
+</tr>
+<tr>
+<td>Build stability</td>
+<td>Build sukses tanpa critical blocker</td>
+</tr>
+<tr>
+<td><strong>Kesiapan test framework</strong></td>
+<td><strong>0% → 100% dalam Phase 0</strong></td>
+</tr>
+<tr>
+<td><strong>Code coverage (unit)</strong></td>
+<td><strong>0% → 30% di akhir Phase 1, 50% di akhir</strong></td>
+</tr>
+<tr>
+<td>E2E coverage</td>
+<td>Minimal 1 happy-path + 1 sad-path per fitur critical</td>
+</tr>
+<tr>
+<td>Dokumentasi</td>
+<td>Test plan + test summary report</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-entry-criteria-kriteria-masuk">7. Entry Criteria (Kriteria Masuk)</h2>
+<ul>
+<li>[x] Test plan sudah dibuat dan di-review</li>
+<li>[ ] <strong>Test framework sudah terinstall</strong> (Vitest + RTL + Playwright) — Phase 0</li>
+<li>[ ] <strong>Test config files</strong> sudah ada (<code>vitest.config.js</code>, <code>playwright.config.js</code>) — Phase 0</li>
+<li>[ ] <strong>CI/CD untuk test</strong> sudah ada di <code>.github/workflows/</code> — Phase 0</li>
+<li>[ ] <strong>Test data</strong> (3 akun role: admin, bismar, copywriter) tersedia di staging</li>
+<li>[ ] <strong>Midtrans sandbox</strong> account aktif dengan test cards</li>
+<li>[ ] Tools testing terinstall (Vitest, Playwright, Postman, VS Code)</li>
+<li>[ ] Backend IFL running di staging</li>
+<li>[ ] ImageKit credentials tersedia</li>
+<li>[ ] Google OAuth client ID/Secret tersedia</li>
+</ul>
+<hr />
+<h2 id="8-exit-suspension-criteria-kriteria-keluar-penangguhan">8. Exit / Suspension Criteria (Kriteria Keluar / Penangguhan)</h2>
+<p><strong>Suspension (pengujian ditunda):</strong>
+- Build gagal deploy ke staging
+- Backend IFL API down &gt; 30 menit
+- Midtrans sandbox down
+- Ada critical bug yang block &gt; 50% test case Donasi
+- ImageKit CDN error</p>
+<p><strong>Resume (pengujian dilanjutkan):</strong>
+- Build sudah stabil
+- Backend &amp; payment gateway sudah normal
+- Critical bug sudah diperbaiki
+- Environment sudah stabil minimal 1 jam</p>
+<hr />
+<h2 id="9-completion-criteria-kriteria-penyelesaian">9. Completion Criteria (Kriteria Penyelesaian)</h2>
+<ul>
+<li>[ ] <strong>Test framework setup 100%</strong> (Vitest + RTL + Playwright + CI)</li>
+<li>[ ] <strong>100% Donasi test case</strong> dieksekusi (highest priority, 13 TC)</li>
+<li>[ ] <strong>100% Auth test case</strong> dieksekusi (10 TC)</li>
+<li>[ ] Minimal <strong>80% test case</strong> total dieksekusi (seluruh fase)</li>
+<li>[ ] <strong>Code coverage ≥ 30%</strong> (dari baseline 0%)</li>
+<li>[ ] <strong>0 critical bug</strong> open</li>
+<li>[ ] <strong>0 high-priority bug</strong> open</li>
+<li>[ ] Semua <strong>regression test</strong> passed</li>
+<li>[ ] Test summary report sudah dibuat</li>
+<li>[ ] Sign-off dari stakeholder</li>
+</ul>
+<hr />
+<h2 id="10-environmental-requirements-kebutuhan-lingkungan">10. Environmental Requirements (Kebutuhan Lingkungan)</h2>
+<h3 id="101-perangkat-keras-hardware">10.1. Perangkat Keras (Hardware)</h3>
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Spec</th>
+<th>Jumlah</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Laptop Tester</td>
+<td>RAM 16GB, SSD 512GB, i5 ke atas</td>
+<td>1 (QA)</td>
+</tr>
+<tr>
+<td>Smartphone (Android)</td>
+<td>Android 13+, 6GB RAM (responsive test)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Tablet (iPad)</td>
+<td>iPad Air, iOS 17+ (responsive test)</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-perangkat-lunak-software">10.2. Perangkat Lunak (Software)</h3>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th>Versi</th>
+<th>Kegunaan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node.js</td>
+<td>18+</td>
+<td>Runtime</td>
+</tr>
+<tr>
+<td>Google Chrome</td>
+<td>120+</td>
+<td>Browser testing (primary)</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td>120+</td>
+<td>Cross-browser</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>17+</td>
+<td>macOS testing</td>
+</tr>
+<tr>
+<td>Edge</td>
+<td>120+</td>
+<td>Cross-browser</td>
+</tr>
+<tr>
+<td><strong>Playwright</strong></td>
+<td><strong>1.40+</strong></td>
+<td><strong>E2E test runner (planned)</strong></td>
+</tr>
+<tr>
+<td><strong>Vitest</strong></td>
+<td><strong>1.0+</strong></td>
+<td><strong>Unit test runner (planned)</strong></td>
+</tr>
+<tr>
+<td><strong>React Testing Library</strong></td>
+<td><strong>14+</strong></td>
+<td><strong>Component testing (planned)</strong></td>
+</tr>
+<tr>
+<td>Postman</td>
+<td>Latest</td>
+<td>API testing (manual)</td>
+</tr>
+<tr>
+<td>Newman</td>
+<td>Latest</td>
+<td>Postman CLI (automation)</td>
+</tr>
+<tr>
+<td>VS Code</td>
+<td>Latest</td>
+<td>Code editor</td>
+</tr>
+</tbody>
+</table>
+<h3 id="103-jaringan">10.3. Jaringan</h3>
+<ul>
+<li>Internet min. 10 Mbps</li>
+<li>Akses ke Midtrans sandbox &amp; ImageKit CDN</li>
+</ul>
+<h3 id="104-konfigurasi-environment">10.4. Konfigurasi Environment</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Value</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VITE_API_URL</code></td>
+<td><code>https://api.iflchaptermalang.org</code></td>
+<td>Backend API</td>
+</tr>
+<tr>
+<td><code>VITE_MIDTRANS_CLIENT_KEY</code></td>
+<td><em>(sandbox key)</em></td>
+<td>Midtrans Snap</td>
+</tr>
+<tr>
+<td><code>VITE_MIDTRANS_MERCHANT_ID</code></td>
+<td><em>(sandbox ID)</em></td>
+<td>Midtrans</td>
+</tr>
+<tr>
+<td><code>VITE_IMAGEKIT_PUBLIC_KEY</code></td>
+<td><em>(public key)</em></td>
+<td>ImageKit upload</td>
+</tr>
+<tr>
+<td><code>VITE_GOOGLE_CLIENT_ID</code></td>
+<td><em>(OAuth ID)</em></td>
+<td>Google login</td>
+</tr>
+<tr>
+<td><code>VITE_BASE_URL</code></td>
+<td><code>https://iflchaptermalang.org</code></td>
+<td>Site URL</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-test-systems-sistem-pengujian">11. Test Systems (Sistem Pengujian)</h2>
+<table>
+<thead>
+<tr>
+<th>Komponen</th>
+<th>Deskripsi</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test plan</strong></td>
+<td>Dokumen ini (<code>test-plan.md</code>)</td>
+<td>✅ Ada</td>
+</tr>
+<tr>
+<td><strong>Test framework</strong></td>
+<td>Vitest + RTL + Playwright</td>
+<td>❌ <strong>Belum di-setup</strong></td>
+</tr>
+<tr>
+<td><strong>Test config</strong></td>
+<td><code>vitest.config.js</code> + <code>playwright.config.js</code></td>
+<td>❌ <strong>Belum ada</strong></td>
+</tr>
+<tr>
+<td><strong>Test case UI</strong></td>
+<td><em>(to be created)</em> — akan disimpan di Google Sheet</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td><strong>Test case API</strong></td>
+<td><em>(to be created)</em> — akan disimpan di Google Sheet</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td><strong>CI/CD pipeline</strong></td>
+<td><code>.github/workflows/test.yml</code></td>
+<td>❌ <strong>Belum ada</strong> (cuma deploy.yml)</td>
+</tr>
+<tr>
+<td><strong>Mock backend</strong></td>
+<td>MSW setup</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td><strong>Test data</strong></td>
+<td>3 akun role (admin, bismar, copywriter) + donor</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td><strong>Pre-commit hook</strong></td>
+<td>Husky</td>
+<td>❌ <strong>Belum ada</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-external-factors-faktor-eksternal">12. External Factors (Faktor Eksternal)</h2>
+<ul>
+<li><strong>IFL Backend API</strong> — harus running untuk E2E test</li>
+<li>Disimpan terpisah (bukan bagian dari frontend repo)</li>
+<li>Contract stability tergantung tim backend</li>
+<li><strong>Midtrans Payment Gateway</strong> — 3rd party</li>
+<li>Sandbox tersedia untuk testing (<code>app.sandbox.midtrans.com</code>)</li>
+<li>Reliability: 99.9% SLA (production), bisa ada downtime</li>
+<li>Test cards: tersedia untuk Visa, MC, QRIS, GoPay, OVO, DANA, ShopeePay</li>
+<li><strong>ImageKit CDN</strong> — image hosting</li>
+<li>Reliability: 99.9% SLA</li>
+<li>Free tier: 20GB bandwidth/bulan</li>
+<li><strong>Google OAuth</strong> — login sosial</li>
+<li>Reliability: 99.9% SLA</li>
+<li><strong>cPanel</strong> — hosting (bukan Vercel)</li>
+<li>Deployment via FTP dari GitHub Actions</li>
+<li>Custom domain: iflchaptermalang.org</li>
+</ul>
+<hr />
+<h2 id="13-team-composition-komposisi-tim">13. Team Composition (Komposisi Tim)</h2>
+<table>
+<thead>
+<tr>
+<th>Nama</th>
+<th>Peran</th>
+<th>Tanggung Jawab</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Irza</strong> (Muhammad Irza Dzulhika)</td>
+<td>QA Lead / Tester</td>
+<td>Test planning, execution, automation</td>
+</tr>
+<tr>
+<td><strong>Dev Frontend</strong></td>
+<td>Frontend Developer</td>
+<td>Bug fixing, test framework setup</td>
+</tr>
+<tr>
+<td><strong>Bismar Team</strong></td>
+<td>Internal Role</td>
+<td>Campaign management (uji alur donasi)</td>
+</tr>
+<tr>
+<td><strong>Copywriter Team</strong></td>
+<td>Internal Role</td>
+<td>Blog content (uji alur blog admin)</td>
+</tr>
+<tr>
+<td><strong>Admin IFL</strong></td>
+<td>Administrator</td>
+<td>UAT, sign-off</td>
+</tr>
+</tbody>
+</table>
+<p><strong>External Participants:</strong> Member IFL (uji alur volunteer registration)</p>
+<p><strong>Hand-off Points:</strong>
+- Developer → QA: setiap sprint / iterasi
+- QA → Bismar/Copywriter: untuk UAT per role</p>
+<hr />
+<h2 id="14-revision-handover-management-manajemen-penyerahan-revisi">14. Revision Handover Management (Manajemen Penyerahan Revisi)</h2>
+<ul>
+<li><strong>Version control</strong>: Git (GitHub)</li>
+<li><strong>Build deployment</strong>: otomatis via cPanel FTP dari <code>.github/workflows/deploy.yml</code></li>
+<li><strong>QA testing window</strong>: minimal 1x24 jam setelah build baru di staging</li>
+<li><strong>Changelog format</strong>:
+  ```
+  [v1.0.X] 2026-06-22</li>
+<li>FIXED: Bug #123 - Donation timeout error</li>
+<li>ADDED: Recurring donation feature</li>
+<li>CHANGED: Redesign chatbot composer</li>
+<li>TESTED: 13 donation test cases executed
+  ```</li>
+<li><strong>Notifikasi</strong>: GitHub Issues + WhatsApp group IFL Malang</li>
+</ul>
+<hr />
+<h2 id="15-test-suite-execution-eksekusi-test-suite">15. Test Suite Execution (Eksekusi Test Suite)</h2>
+<h3 id="strategi-per-fase">Strategi per fase:</h3>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Test Suite</th>
+<th>Strategi</th>
+<th>Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Smoke</strong></td>
+<td>5 critical-path tests</td>
+<td>Automated on every PR</td>
+<td>Playwright</td>
+</tr>
+<tr>
+<td><strong>Donasi regression</strong></td>
+<td>13 donasi test cases</td>
+<td>Automated on every PR</td>
+<td>Playwright + Vitest</td>
+</tr>
+<tr>
+<td><strong>Auth regression</strong></td>
+<td>10 auth test cases</td>
+<td>Automated</td>
+<td>Playwright</td>
+</tr>
+<tr>
+<td><strong>Functional</strong></td>
+<td>Per fitur (per modul)</td>
+<td>Manual + Postman untuk API</td>
+<td>Manual + Postman</td>
+</tr>
+<tr>
+<td><strong>Regression</strong></td>
+<td>Full suite</td>
+<td>Automated nightly</td>
+<td>Playwright + Vitest</td>
+</tr>
+<tr>
+<td><strong>Payment</strong></td>
+<td>Midtrans sandbox scenarios</td>
+<td>Manual + automated</td>
+<td>Playwright + Midtrans</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>OWASP Top 10 checklist</td>
+<td>Manual + automated</td>
+<td>OWASP ZAP (planned)</td>
+</tr>
+<tr>
+<td><strong>Accessibility</strong></td>
+<td>axe-core scan</td>
+<td>Automated</td>
+<td>axe-core (planned)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cara-eksekusi-ifl-specific">Cara eksekusi (IFL-specific):</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Setup lokal</span>
+<span class="nb">cd</span><span class="w"> </span>fe_iflchaptermalang
+cp<span class="w"> </span>.env.example<span class="w"> </span>.env.local
+<span class="c1"># Update VITE_API_URL, VITE_MIDTRANS_CLIENT_KEY, dll di .env.local</span>
+
+<span class="c1"># Install dependencies</span>
+npm<span class="w"> </span>install
+
+<span class="c1"># === PHASE 0: Setup test framework (one-time) ===</span>
+npm<span class="w"> </span>install<span class="w"> </span>-D<span class="w"> </span>vitest<span class="w"> </span>@testing-library/react<span class="w"> </span>@testing-library/jest-dom<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>@testing-library/user-event<span class="w"> </span>@playwright/test<span class="w"> </span>jsdom<span class="w"> </span>msw
+
+<span class="c1"># Buat vitest.config.js &amp; playwright.config.js (template)</span>
+
+<span class="c1"># === Unit tests (setelah setup) ===</span>
+npm<span class="w"> </span><span class="nb">test</span><span class="w">                    </span><span class="c1"># Run once</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:watch<span class="w">          </span><span class="c1"># Watch mode</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:coverage<span class="w">       </span><span class="c1"># With coverage</span>
+
+<span class="c1"># === E2E tests (setelah setup) ===</span>
+npx<span class="w"> </span>playwright<span class="w"> </span>install<span class="w">      </span><span class="c1"># First time only</span>
+
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e<span class="w">            </span><span class="c1"># All E2E</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:auth<span class="w">       </span><span class="c1"># Auth flow</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:donation<span class="w">   </span><span class="c1"># Donasi + Midtrans</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:blog<span class="w">       </span><span class="c1"># Blog + CKEditor</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:event<span class="w">      </span><span class="c1"># Event management</span>
+
+<span class="c1"># === E2E debugging ===</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:ui<span class="w">         </span><span class="c1"># Interactive UI mode</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:debug<span class="w">      </span><span class="c1"># Debug mode</span>
+npm<span class="w"> </span>run<span class="w"> </span>test:e2e:headed<span class="w">     </span><span class="c1"># See browser</span>
+
+<span class="c1"># === API testing (after Postman collection ready) ===</span>
+newman<span class="w"> </span>run<span class="w"> </span>ifl-api.postman_collection.json
+</code></pre></div>
+
+<hr />
+<h2 id="16-potential-risks-risiko-potensial">16. Potential Risks (Risiko Potensial)</h2>
+<table>
+<thead>
+<tr>
+<th>Risiko</th>
+<th>Dampak</th>
+<th>Probabilitas</th>
+<th>Mitigasi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Setup test framework dari 0%</strong></td>
+<td>Timeline Phase 0 molor</td>
+<td>High</td>
+<td>Pakai template yang sudah ada (Arteri E-Learning)</td>
+</tr>
+<tr>
+<td><strong>Backend IFL API down</strong></td>
+<td>E2E test gagal</td>
+<td>Medium</td>
+<td>Mock backend dengan MSW untuk unit test</td>
+</tr>
+<tr>
+<td><strong>Midtrans sandbox error</strong></td>
+<td>Payment test gagal</td>
+<td>Low</td>
+<td>Backup test cards, retry dengan exponential backoff</td>
+</tr>
+<tr>
+<td><strong>JavaScript (no TS)</strong></td>
+<td>Bug type tidak tertangkap saat compile</td>
+<td>High</td>
+<td>Strict ESLint + PropTypes + gradual TS migration</td>
+</tr>
+<tr>
+<td><strong>ImageKit CDN rate limit</strong></td>
+<td>Image upload test gagal</td>
+<td>Low</td>
+<td>Mock ImageKit response di test</td>
+</tr>
+<tr>
+<td><strong>Tight volunteer</strong></td>
+<td>Coverage tidak maksimal</td>
+<td>High</td>
+<td>Risk-based testing; fokus Donasi (highest impact)</td>
+</tr>
+<tr>
+<td><strong>Tim QA single person (Irza)</strong></td>
+<td>Bottleneck di review</td>
+<td>High</td>
+<td>Pair dengan dev untuk code review test</td>
+</tr>
+<tr>
+<td><strong>CKEditor 5 bug</strong></td>
+<td>Blog authoring broken</td>
+<td>Low</td>
+<td>Pin versi, test scenario terbatas</td>
+</tr>
+<tr>
+<td><strong>3 icon library (Phosphor + Lucide + React Icons)</strong></td>
+<td>Bundle bengkak, conflict</td>
+<td>Medium</td>
+<td>Audit &amp; konsolidasi ke 1 library</td>
+</tr>
+<tr>
+<td><strong>cPanel FTP deploy</strong></td>
+<td>Build lama, error-prone</td>
+<td>Medium</td>
+<td>Monitor deploy log, retry script</td>
+</tr>
+<tr>
+<td><strong>Google OAuth client quota</strong></td>
+<td>Login test gagal</td>
+<td>Low</td>
+<td>Mock OAuth di unit test</td>
+</tr>
+<tr>
+<td><strong>No TypeScript</strong></td>
+<td>Runtime error lebih sering</td>
+<td>High</td>
+<td>Strict prop validation + JSDoc</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="17-documentation-of-changes-dokumentasi-perubahan">17. Documentation of Changes (Dokumentasi Perubahan)</h2>
+<table>
+<thead>
+<tr>
+<th>Versi</th>
+<th>Tanggal</th>
+<th>Penulis</th>
+<th>Perubahan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1.0</td>
+<td>2026-06-22</td>
+<td>Irza</td>
+<td>Initial Test Plan — berdasarkan analisis codebase IFL Chapter Malang</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="18-appendix-lampiran">18. Appendix (Lampiran)</h2>
+<p>Dokumen pendukung:
+- <strong>Source repo</strong> — https://github.com/irzadzulhika29/fe_iflchaptermalang
+- <strong>Live site</strong> — https://iflchaptermalang.org/
+- <strong>Test plan template</strong> — <code>../../docs/test-plan-template.md</code>
+- <strong>Stuudi reference</strong> — <code>../arteri-elearning/test-plan.md</code> (pembanding)
+- <strong>JS testing patterns</strong> — <code>../../skills/javascript-testing-patterns/SKILL.md</code>
+- <strong>E2E patterns</strong> — <code>../../skills/e2e-testing-patterns/SKILL.md</code></p>
+<hr />
+<h2 id="19-faq-pertanyaan-umum">19. FAQ (Pertanyaan Umum)</h2>
+<p><strong>Q: Kenapa test plan ini ditulis padahal test belum ada?</strong>
+A: Karena <strong>best practice</strong> — test plan harus dibuat sebelum coding test. Tanpa test plan, setup
+test framework bisa salah arah. Dokumen ini jadi panduan Phase 0.</p>
+<p><strong>Q: Kenapa prioritas Donasi (bukan Auth)?</strong>
+A: Karena <strong>Donasi = revenue stream + payment gateway integration</strong>. Bug di donasi = kerugian
+finansial langsung. Auth juga penting, tapi biasanya lebih mature pattern-nya.</p>
+<p><strong>Q: Bagaimana cara test Midtrans di lokal?</strong>
+A: Midtrans punya <strong>sandbox</strong> terpisah (<code>app.sandbox.midtrans.com</code>). Pakai client key sandbox +
+test cards (Visa: 4811 1111 1111 1114, dll). Transaksi sandbox tidak benar-benar dipotong.</p>
+<p><strong>Q: Kenapa tidak ada test sama sekali? Apa kendalanya?</strong>
+A: Belum sempat di-setup. Project fokus ke feature delivery dulu. Sekarang dengan test plan ini,
+mulai di-setup fondasi (Phase 0).</p>
+<p><strong>Q: JavaScript atau TypeScript — perlu migrasi?</strong>
+A: Untuk <strong>jangka panjang</strong> TypeScript sangat membantu (type safety, IntelliSense, fewer bugs).
+Untuk <strong>jangka pendek</strong> (magang QA), cukup strict ESLint + PropTypes. Migrasi TS bisa jadi
+proyek terpisah.</p>
+<p><strong>Q: 3 icon library (Phosphor + Lucide + React Icons) — kenapa?</strong>
+A: Kemungkinan karena refactor bertahap. Bundle jadi bengkak. Quick win: konsolidasi ke 1
+library (rekomendasi: <strong>Lucide</strong> — paling ringan &amp; modern).</p>
+<p><strong>Q: Berapa lama test plan ini berlaku?</strong>
+A: Berlaku untuk <strong>v2.0</strong> (Phase 0-12 ≈ 6 minggu). Update setiap ada perubahan arsitektur
+besar atau setelah milestone tercapai.</p>
+<p><strong>Q: Apakah ada CI/CD untuk test?</strong>
+A: <strong>Belum</strong>. Saat ini cuma ada <code>deploy.yml</code> (FTP deploy). Akan ditambah <code>test.yml</code> di Phase 0.</p>
+<hr />
+<h2 id="referensi">Referensi</h2>
+<ul>
+<li>Mulyanto, A. (2018). <em>Test Plan</em>. BINUS University – School of Information Systems.</li>
+<li>Myers, G. J., Sandler, C., &amp; Badgett, T. (2012). <em>The Art of Software Testing</em> (3rd ed.).</li>
+<li>IEEE 829 — Standard for Software Test Documentation</li>
+<li>ISTQB Foundation Level Syllabus v4.0</li>
+<li>React Testing Library Docs — https://testing-library.com/docs/react-testing-library/intro</li>
+<li>Playwright Documentation — https://playwright.dev/docs/intro</li>
+<li>Vitest Documentation — https://vitest.dev/</li>
+<li>Midtrans Sandbox — https://docs.midtrans.com/en/technical-reference/sandbox-test</li>
+</ul>
+<hr />
+<h2 id="change-log-dokumen-ini">Change Log (Dokumen Ini)</h2>
+<table>
+<thead>
+<tr>
+<th>Versi</th>
+<th>Tanggal</th>
+<th>Perubahan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1.0</td>
+<td>2026-06-22</td>
+<td>Initial Test Plan — di-instantiate dari template BINUS, diisi spesifik untuk IFL Chapter Malang. Fokus utama: setup test framework dari 0% + donasi flow + role-based access.</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
