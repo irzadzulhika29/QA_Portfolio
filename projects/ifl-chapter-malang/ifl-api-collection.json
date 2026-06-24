@@ -1,0 +1,1769 @@
+{
+  "info": {
+    "name": "IFL Chapter Malang API",
+    "description": "API Testing Collection untuk IFL Chapter Malang\nBase URL: https://api.iflchaptermalang.org/api/v1\n\nAuth: JWT Bearer token (didapat dari login)\nRole: visitor, volunteer, admin, bismar, copywriter, supervisor",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"volunteer@test.com\",\n  \"username\": \"volunteer123\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@iflchaptermalang.org\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/auth/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Email Verification Resend",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/auth/email/resend",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "email",
+                "resend"
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"volunteer@test.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Google OAuth Redirect",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/auth/google",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "google"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/auth/refresh-token",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "refresh-token"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/auth/password/email",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "password",
+                "email"
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"volunteer@test.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Notice: Email Not Verified",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/auth/notice/emailNotVerified",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "notice",
+                "emailNotVerified"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Notice: Unauthorized",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/auth/notice/unauthorized",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "notice",
+                "unauthorized"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/profile/edit",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "edit"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nama Baru\",\n  \"phone\": \"08123456789\",\n  \"bio\": \"Mahasiswa UB\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Password",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/profile/update-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "update-password"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_password\": \"password123\",\n  \"new_password\": \"newpass123\",\n  \"new_password_confirmation\": \"newpass123\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Blog",
+      "item": [
+        {
+          "name": "List Blogs",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/blog",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Blog Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/blog/category",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "category"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Blog Detail by Slug",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/blog/{blog_slug}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "{blog_slug}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Upload Image (CKEditor)",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/blog/upload",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "upload"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Like Blog",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/blog/{blog_id}/toggle-like",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "{blog_id}",
+                "toggle-like"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Comments",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/blog/{blog_id}/comment",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "{blog_id}",
+                "comment"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Comment",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/blog/{blog_id}/comment",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "{blog_id}",
+                "comment"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Artikel yang bagus!\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Reply Comment",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/blog/{blog_id}/comment/{comment_id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "{blog_id}",
+                "comment",
+                "{comment_id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Terima kasih!\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Edit Comment",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/blog/{blog_id}/comment/{comment_id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "blog",
+                "{blog_id}",
+                "comment",
+                "{comment_id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Update komentar\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "item": [
+        {
+          "name": "Like Comment",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/comment/{comment_id}/toggle-like",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comment",
+                "{comment_id}",
+                "toggle-like"
+              ]
+            }
+          }
+        },
+        {
+          "name": "View Comment by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/comment/{comment_id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comment",
+                "{comment_id}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Comment",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/comment/{comment_id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comment",
+                "{comment_id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Campaign (Donasi)",
+      "item": [
+        {
+          "name": "List Campaigns",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/campaign",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "campaign"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Total Donation Stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/campaign/total-donation",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "campaign",
+                "total-donation"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Campaign Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/campaign/category",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "campaign",
+                "category"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Campaign Detail by Slug",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/campaign/{campaign_slug}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "campaign",
+                "{campaign_slug}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Campaign Donation List",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/campaign/{campaign_slug}/donation",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "campaign",
+                "{campaign_slug}",
+                "donation"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Submit Donation",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/campaign/{campaign_slug}/donation",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "campaign",
+                "{campaign_slug}",
+                "donation"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 50000,\n  \"name\": \"Donatur\",\n  \"email\": \"donatur@test.com\",\n  \"message\": \"Semoga berkah\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Campaign Invoice",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/campaign/invoice/{campaign_id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "campaign",
+                "invoice",
+                "{campaign_id}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transaction",
+      "item": [
+        {
+          "name": "Create Transaction (Midtrans)",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/transaction/create/{campaignSlug}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaction",
+                "create",
+                "{campaignSlug}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 50000,\n  \"name\": \"Donatur\",\n  \"email\": \"donatur@test.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Payment Callback (Midtrans)",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/transaction/callback",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaction",
+                "callback"
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transaction_id\": \"TRX-123\",\n  \"order_id\": \"ORDER-123\",\n  \"status_code\": \"200\",\n  \"transaction_status\": \"settlement\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Transaction Invoice",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/transaction/invoice/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaction",
+                "invoice",
+                "{id}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Check Status",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/transaction/status/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "transaction",
+                "status",
+                "{id}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Volunteer",
+      "item": [
+        {
+          "name": "Form Data",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/volunteer/registration/form-data",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "volunteer",
+                "registration",
+                "form-data"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Register Volunteer",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/volunteer/registration",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "volunteer",
+                "registration"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@test.com\",\n  \"phone\": \"08123456789\",\n  \"referral_code\": \"IFL2026\"\n}"
+            }
+          }
+        },
+        {
+          "name": "My Registration",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/volunteer/registration/my-registration",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "volunteer",
+                "registration",
+                "my-registration"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Validate Referral Code",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/volunteer/referral-code/validate/{code}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "volunteer",
+                "referral-code",
+                "validate",
+                "{code}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Event",
+      "item": [
+        {
+          "name": "List Events",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/event",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "event"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Event Detail",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/event/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "event",
+                "{id}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Event (Admin)",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/event",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "event"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Workshop AI 2026",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Belajar AI untuk pemula",
+                  "type": "text"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-07-15",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "value": "",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Event (Admin)",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/event/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "event",
+                "{id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Updated Workshop",
+                  "type": "text"
+                },
+                {
+                  "key": "_method",
+                  "value": "PUT",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Event (Admin)",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/event/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "event",
+                "{id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "SDG",
+      "item": [
+        {
+          "name": "List SDGs",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/sdg",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "sdg"
+              ]
+            }
+          }
+        },
+        {
+          "name": "SDG Detail",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/sdg/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "sdg",
+                "{id}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Users & Roles",
+      "item": [
+        {
+          "name": "List Users (Supervisor)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/supervisor",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "supervisor"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "{id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/admin/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "{id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Name\",\n  \"role\": \"volunteer\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/admin/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "{id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Roles CRUD",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/role",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "role"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Referral Codes",
+      "item": [
+        {
+          "name": "List Referral Codes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/referral-codes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "referral-codes"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Create Referral Code",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/admin/referral-codes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "referral-codes"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"IFL2026\",\n  \"max_uses\": 100,\n  \"expires_at\": \"2026-12-31\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Toggle Active",
+          "request": {
+            "method": "PATCH",
+            "url": {
+              "raw": "{{base_url}}/admin/referral-codes/{id}/toggle-active",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "referral-codes",
+                "{id}",
+                "toggle-active"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Delete Referral Code",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/admin/referral-codes/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "referral-codes",
+                "{id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Volunteer Registrations",
+      "item": [
+        {
+          "name": "List Registrations",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/volunteer-registrations",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "volunteer-registrations"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Export CSV",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/volunteer-registrations/export",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "volunteer-registrations",
+                "export"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update Status",
+          "request": {
+            "method": "PATCH",
+            "url": {
+              "raw": "{{base_url}}/admin/volunteer-registrations/{id}/status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "volunteer-registrations",
+                "{id}",
+                "status"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Bulk Update Status",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/admin/volunteer-registrations/bulk-update-status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "volunteer-registrations",
+                "bulk-update-status"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [1, 2, 3],\n  \"status\": \"approved\"\n}"
+            }
+          }
+        },
+        {
+          "name": "By Event",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/events/{eventId}/volunteer-registrations",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "events",
+                "{eventId}",
+                "volunteer-registrations"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Donations",
+      "item": [
+        {
+          "name": "Pending Donations",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/donations/pending",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "donations",
+                "pending"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Total by Campaign",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/donations/campaign/{campaignId}/total",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "donations",
+                "campaign",
+                "{campaignId}",
+                "total"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Approve Donation",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/admin/donations/{id}/approve",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "donations",
+                "{id}",
+                "approve"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Reject Donation",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/admin/donations/{id}/reject",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "donations",
+                "{id}",
+                "reject"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shop Manager",
+      "item": [
+        {
+          "name": "Create Campaign",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/shop-manager/campaign",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shop-manager",
+                "campaign"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Campaign Baru\",\n  \"description\": \"Deskripsi campaign\",\n  \"target_amount\": 10000000,\n  \"end_date\": \"2026-12-31\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Campaign",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/shop-manager/campaign/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shop-manager",
+                "campaign",
+                "{id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Campaign Updated\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Campaign",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/shop-manager/campaign/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shop-manager",
+                "campaign",
+                "{id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Create Campaign Category",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/shop-manager/campaign/category",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shop-manager",
+                "campaign",
+                "category"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Kategori Baru\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Copywriter",
+      "item": [
+        {
+          "name": "Create Blog",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/copywriter/blog",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "copywriter",
+                "blog"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Artikel Baru\",\n  \"content\": \"<p>Isi artikel</p>\",\n  \"category_id\": 1,\n  \"status\": \"published\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Blog",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/copywriter/blog/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "copywriter",
+                "blog",
+                "{id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Artikel\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Blog",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/copywriter/blog/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "copywriter",
+                "blog",
+                "{id}"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Blog Category CRUD",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/copywriter/blog/category",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "copywriter",
+                "blog",
+                "category"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Kategori Baru\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

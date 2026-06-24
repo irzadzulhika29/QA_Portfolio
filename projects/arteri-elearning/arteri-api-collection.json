@@ -1,0 +1,583 @@
+{
+  "info": {
+    "name": "Arteri E-Learning API",
+    "description": "API Testing Collection untuk Arteri E-Learning (Stuudi)\nBase URL: https://be.stuudi.com/api/v1 (ganti sesuai environment)\n\nAuth: Bearer token (JWT) untuk endpoint yang memerlukan login",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@arteri.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"User Baru\",\n  \"email\": \"user@test.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/auth/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/auth/password/email",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "password",
+                "email"
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@test.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/auth/refresh-token",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "refresh-token"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/profile/edit",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "edit"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nama Baru\",\n  \"phone\": \"08123456789\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Password",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/profile/update-password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "update-password"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_password\": \"password123\",\n  \"new_password\": \"newpass123\",\n  \"new_password_confirmation\": \"newpass123\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CBT (Exam)",
+      "item": [
+        {
+          "name": "Get Upcoming Exam",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/upcoming-exam",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "upcoming-exam"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Start Exam",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/exam/start",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "exam",
+                "start"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"exam_id\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Submit Answer",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/exam/submit",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "exam",
+                "submit"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"exam_id\": 1,\n  \"question_id\": 10,\n  \"answer\": \"A\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Finish Exam",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/exam/finish",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "exam",
+                "finish"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"exam_id\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Exam Result",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/exam/result/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "exam",
+                "result",
+                "1"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Exam History",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/exam/history",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "exam",
+                "history"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "List Courses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/courses",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "courses"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Course Detail",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/courses/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "courses",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Enroll Course",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/courses/enroll",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "courses",
+                "enroll"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"course_id\": 1\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/dashboard",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "dashboard"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Manage Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/users",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "users"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Manage Exams",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/admin/exams",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "exams"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Create Exam",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/admin/exams",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "exams"
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"UTS Semester 1\",\n  \"description\": \"Ujian Tengah Semester\",\n  \"duration_minutes\": 120,\n  \"start_time\": \"2026-07-01T08:00:00\",\n  \"end_time\": \"2026-07-01T10:00:00\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reference Data",
+      "item": [
+        {
+          "name": "Get Provinces",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/province/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "province",
+                "all"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Cities",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/city/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "city",
+                "all"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
