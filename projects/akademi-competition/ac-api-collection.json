@@ -1,0 +1,372 @@
+{
+  "info": {
+    "name": "Akademi Competition API",
+    "description": "API Testing Collection untuk Akademi Competition\nBase URL: {{vps}} (variable environment)\n\nAuth: Bearer Token (JWT) — otomatis dari folder User.\n\nFokus: Artikel, Team Matchmaking, Selection Form",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}auth/login", "host": ["{{vps}}"], "path": ["auth", "login"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"user@test.com\",\n  \"password\": \"password123\"\n}" }
+          }
+        },
+        {
+          "name": "Login — Wrong Password",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}auth/login", "host": ["{{vps}}"], "path": ["auth", "login"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"user@test.com\",\n  \"password\": \"wrongpassword\"\n}" }
+          }
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}auth/forgot-password", "host": ["{{vps}}"], "path": ["auth", "forgot-password"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"user@test.com\"\n}" }
+          }
+        },
+        {
+          "name": "Register (if needed)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}auth/register", "host": ["{{vps}}"], "path": ["auth", "register"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"newuser@test.com\",\n  \"password\": \"password123\",\n  \"name\": \"User Baru\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Public",
+      "item": [
+        {
+          "name": "Get Articles",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{vps}}articles?page=1&limit=10", "host": ["{{vps}}"], "path": ["articles"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }] }
+          }
+        },
+        {
+          "name": "Search Articles",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{vps}}articles?search=olimpiade", "host": ["{{vps}}"], "path": ["articles"], "query": [{ "key": "search", "value": "olimpiade" }] }
+          }
+        },
+        {
+          "name": "Get Trending Articles",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{vps}}articles/trending?limit=5", "host": ["{{vps}}"], "path": ["articles", "trending"], "query": [{ "key": "limit", "value": "5" }] }
+          }
+        },
+        {
+          "name": "Get Article Tags",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}articles/tags", "host": ["{{vps}}"], "path": ["articles", "tags"] } }
+        },
+        {
+          "name": "Get Article Detail (Public)",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}articles/{{article_slug}}", "host": ["{{vps}}"], "path": ["articles", "{{article_slug}}"] } }
+        },
+        {
+          "name": "Get Article Comments (Public)",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}articles/{{article_id}}/comments", "host": ["{{vps}}"], "path": ["articles", "{{article_id}}", "comments"] } }
+        }
+      ]
+    },
+    {
+      "name": "User — Articles",
+      "item": [
+        {
+          "name": "Get My Articles",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{vps}}users/articles?page=1&limit=10", "host": ["{{vps}}"], "path": ["users", "articles"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "Get Saved Articles",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{vps}}users/articles/saved", "host": ["{{vps}}"], "path": ["users", "articles", "saved"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "Get Following Articles",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{vps}}users/articles/following", "host": ["{{vps}}"], "path": ["users", "articles", "following"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "Create Article",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}users/articles", "host": ["{{vps}}"], "path": ["users", "articles"] },
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "multipart/form-data" }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "title", "value": "Judul Artikel Test", "type": "text" },
+                { "key": "body_html", "value": "<p>Isi artikel untuk testing API</p>", "type": "text" },
+                { "key": "visibility", "value": "public", "type": "text" },
+                { "key": "tag_ids", "value": "1", "type": "text" },
+                { "key": "cover_image", "type": "file", "src": [] }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Article Detail (My)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{vps}}users/articles/{{article_id}}", "host": ["{{vps}}"], "path": ["users", "articles", "{{article_id}}"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "Update Article",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{vps}}users/articles/{{article_id}}", "host": ["{{vps}}"], "path": ["users", "articles", "{{article_id}}"] },
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "multipart/form-data" }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "title", "value": "Judul Diupdate", "type": "text" },
+                { "key": "body_html", "value": "<p>Konten diupdate</p>", "type": "text" },
+                { "key": "status", "value": "published", "type": "text" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Article",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{vps}}users/articles/{{article_id}}", "host": ["{{vps}}"], "path": ["users", "articles", "{{article_id}}"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "Like Article",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}users/articles/{{article_id}}/like", "host": ["{{vps}}"], "path": ["users", "articles", "{{article_id}}", "like"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "Unlike Article",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{vps}}users/articles/{{article_id}}/like", "host": ["{{vps}}"], "path": ["users", "articles", "{{article_id}}", "like"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "Save Article",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}users/articles/{{article_id}}/save", "host": ["{{vps}}"], "path": ["users", "articles", "{{article_id}}", "save"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "Unsave Article",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{vps}}users/articles/{{article_id}}/save", "host": ["{{vps}}"], "path": ["users", "articles", "{{article_id}}", "save"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "Add Comment",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}users/articles/{{article_id}}/comments", "host": ["{{vps}}"], "path": ["users", "articles", "{{article_id}}", "comments"] },
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"content\": \"Komentar testing API\"\n}" }
+          }
+        },
+        {
+          "name": "Delete Comment",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{vps}}users/articles/comments/{{comment_id}}", "host": ["{{vps}}"], "path": ["users", "articles", "comments", "{{comment_id}}"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Team Matchmaking",
+      "item": [
+        {
+          "name": "Get Competitions List",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}competitions", "host": ["{{vps}}"], "path": ["competitions"] } }
+        },
+        {
+          "name": "Get Universities List",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}universities", "host": ["{{vps}}"], "path": ["universities"] } }
+        },
+        {
+          "name": "Get Lobby Stats",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}lobbies/stats", "host": ["{{vps}}"], "path": ["lobbies", "stats"] } }
+        },
+        {
+          "name": "Get All Lobbies",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}users/matchmaking/lobbies?competition_id=1", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies"], "query": [{ "key": "competition_id", "value": "1" }] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        },
+        {
+          "name": "Get My Lobbies",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}users/matchmaking/lobbies/me", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "me"] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        },
+        {
+          "name": "Get Lobby Detail",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}users/matchmaking/lobbies/{{lobby_id}}", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "{{lobby_id}}"] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        },
+        {
+          "name": "Create Lobby",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}users/matchmaking/lobbies", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Tim Olimpiade\",\n  \"competition_id\": 1,\n  \"team_size\": 3,\n  \"roles\": [\"Programmer\", \"Matematika\"],\n  \"description\": \"Cari anggota tim olimpiade\",\n  \"deadline\": \"2026-08-01T00:00:00Z\"\n}" }
+          }
+        },
+        {
+          "name": "Delete Lobby",
+          "request": { "method": "DELETE", "url": { "raw": "{{vps}}users/matchmaking/lobbies/{{lobby_id}}", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "{{lobby_id}}"] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        },
+        {
+          "name": "Apply to Lobby",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}users/matchmaking/lobbies/{{lobby_id}}/apply", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "{{lobby_id}}", "apply"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"cover_letter\": \"Saya tertarik join tim ini!\",\n  \"role\": \"Programmer\"\n}" }
+          }
+        },
+        {
+          "name": "Approve Applicant",
+          "request": {
+            "method": "PATCH",
+            "url": { "raw": "{{vps}}users/matchmaking/lobbies/{{lobby_id}}/applications/{{application_id}}", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "{{lobby_id}}", "applications", "{{application_id}}"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"action\": \"approve\"\n}" }
+          }
+        },
+        {
+          "name": "Reject Applicant",
+          "request": {
+            "method": "PATCH",
+            "url": { "raw": "{{vps}}users/matchmaking/lobbies/{{lobby_id}}/applications/{{application_id}}", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "{{lobby_id}}", "applications", "{{application_id}}"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"action\": \"reject\"\n}" }
+          }
+        },
+        {
+          "name": "Request Leave Lobby",
+          "request": { "method": "POST", "url": { "raw": "{{vps}}users/matchmaking/lobbies/{{lobby_id}}/leave-requests", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "{{lobby_id}}", "leave-requests"] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        },
+        {
+          "name": "Get Leave Requests",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}users/matchmaking/lobbies/{{lobby_id}}/leave-requests", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "{{lobby_id}}", "leave-requests"] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        },
+        {
+          "name": "Approve Leave Request",
+          "request": {
+            "method": "PATCH",
+            "url": { "raw": "{{vps}}users/matchmaking/lobbies/{{lobby_id}}/leave-requests/{{user_id}}", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "{{lobby_id}}", "leave-requests", "{{user_id}}"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"action\": \"approve\"\n}" }
+          }
+        },
+        {
+          "name": "Reject Leave Request",
+          "request": {
+            "method": "PATCH",
+            "url": { "raw": "{{vps}}users/matchmaking/lobbies/{{lobby_id}}/leave-requests/{{user_id}}", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "{{lobby_id}}", "leave-requests", "{{user_id}}"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"action\": \"reject\"\n}" }
+          }
+        },
+        {
+          "name": "Kick Member (Owner)",
+          "request": { "method": "DELETE", "url": { "raw": "{{vps}}users/matchmaking/lobbies/{{lobby_id}}/members/{{user_id}}", "host": ["{{vps}}"], "path": ["users", "matchmaking", "lobbies", "{{lobby_id}}", "members", "{{user_id}}"] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        },
+        {
+          "name": "Get Rooms",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}users/matchmaking/rooms", "host": ["{{vps}}"], "path": ["users", "matchmaking", "rooms"] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        },
+        {
+          "name": "My Active Room",
+          "request": { "method": "GET", "url": { "raw": "{{vps}}users/matchmaking/rooms/me", "host": ["{{vps}}"], "path": ["users", "matchmaking", "rooms", "me"] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        },
+        {
+          "name": "Create WS Ticket",
+          "request": { "method": "POST", "url": { "raw": "{{vps}}users/matchmaking/rooms/{{room_id}}/ws-ticket", "host": ["{{vps}}"], "path": ["users", "matchmaking", "rooms", "{{room_id}}", "ws-ticket"] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        }
+      ]
+    },
+    {
+      "name": "Admin — Competition & Selection",
+      "item": [
+        {
+          "name": "Add Competition (with Selection)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}operational/add-competitions", "host": ["{{vps}}"], "path": ["operational", "add-competitions"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Lomba Olimpiade 2026\",\n  \"description\": \"Kompetisi sains nasional\",\n  \"type_id\": 1,\n  \"selection_enabled\": true,\n  \"selection_form_title\": \"Form Seleksi Lomba\",\n  \"selection_form_description\": \"Isi form ini untuk mendaftar\",\n  \"selection_questions\": [\n    {\n      \"question_text\": \"Mengapa Anda ingin mengikuti lomba ini?\",\n      \"description\": \"Jelaskan motivasi Anda\",\n      \"is_required\": true\n    },\n    {\n      \"question_text\": \"Apa pengalaman Anda di bidang ini?\",\n      \"description\": \"\",\n      \"is_required\": false\n    }\n  ]\n}" }
+          }
+        },
+        {
+          "name": "Add Competition (without Selection)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{vps}}operational/add-competitions", "host": ["{{vps}}"], "path": ["operational", "add-competitions"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Lomba Tanpa Seleksi\",\n  \"description\": \"Langsung daftar\",\n  \"type_id\": 1,\n  \"selection_enabled\": false\n}" }
+          }
+        },
+        {
+          "name": "Update Competition Selection",
+          "request": {
+            "method": "PATCH",
+            "url": { "raw": "{{vps}}operational/update-competitions/{{competition_id}}", "host": ["{{vps}}"], "path": ["operational", "update-competitions", "{{competition_id}}"] },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"selection_enabled\": true,\n  \"selection_form_title\": \"Form Seleksi Updated\",\n  \"selection_questions\": [\n    {\n      \"question_text\": \"Pertanyaan baru?\",\n      \"is_required\": true\n    }\n  ]\n}" }
+          }
+        },
+        {
+          "name": "Delete Competition",
+          "request": { "method": "DELETE", "url": { "raw": "{{vps}}operational/competitions/{{competition_id}}", "host": ["{{vps}}"], "path": ["operational", "competitions", "{{competition_id}}"] }, "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }] }
+        }
+      ]
+    }
+  ]
+}
