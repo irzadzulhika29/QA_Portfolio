@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>test-plan</title>
+<style>
+  @page {
+    size: A4;
+    margin: 2cm 1.8cm 2.5cm 1.8cm;
+    @bottom-center {
+      content: counter(page) " / " counter(pages);
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-size: 9pt;
+      color: #666;
+    }
+    @top-right {
+      content: "Arteri E-Learning — Test Plan v1.0";
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-size: 8pt;
+      color: #999;
+    }
+  }
+
+  body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    max-width: 100%;
+  }
+
+  h1, h2, h3, h4 {
+    color: #0f172a;
+    font-weight: 700;
+    line-height: 1.3;
+    page-break-after: avoid;
+  }
+  h1 {
+    font-size: 22pt;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 8px;
+    margin: 0 0 18px 0;
+    page-break-before: always;
+  }
+  h1:first-of-type {
+    page-break-before: avoid;
+  }
+  h2 {
+    font-size: 15pt;
+    color: #1e40af;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 5px;
+    margin: 24px 0 12px 0;
+  }
+  h3 {
+    font-size: 12.5pt;
+    color: #1e3a8a;
+    margin: 18px 0 8px 0;
+  }
+  h4 {
+    font-size: 11pt;
+    color: #334155;
+    margin: 14px 0 6px 0;
+  }
+
+  p, li { margin: 6px 0; }
+
+  ul, ol {
+    padding-left: 22px;
+    margin: 8px 0;
+  }
+  li { margin: 3px 0; }
+
+  blockquote {
+    border-left: 4px solid #3b82f6;
+    background: #f1f5f9;
+    margin: 10px 0;
+    padding: 8px 14px;
+    color: #334155;
+    font-style: italic;
+    border-radius: 0 4px 4px 0;
+  }
+
+  code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 9.5pt;
+    background: #f1f5f9;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #be185d;
+  }
+
+  pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 12px 14px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 9pt;
+    line-height: 1.45;
+    page-break-inside: avoid;
+  }
+  pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0;
+    page-break-inside: avoid;
+    font-size: 9.5pt;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #1e40af;
+    color: #fff;
+    font-weight: 600;
+    font-size: 9.5pt;
+  }
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+  tr:hover td {
+    background: #eff6ff;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 20px 0;
+  }
+
+  a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  /* Markdown extension classes */
+  .task-list-item { list-style: none; }
+  .task-list-item input[type="checkbox"] { margin-right: 6px; }
+
+  /* Header/footer table for document info */
+  .doc-info {
+    background: #f1f5f9;
+    border-left: 4px solid #2563eb;
+    padding: 12px 16px;
+    margin: 16px 0 24px 0;
+    border-radius: 0 4px 4px 0;
+    page-break-inside: avoid;
+  }
+  .doc-info table {
+    background: transparent;
+    margin: 0;
+  }
+  .doc-info th, .doc-info td {
+    background: transparent;
+    border: none;
+    padding: 3px 8px;
+    color: #1e293b;
+  }
+  .doc-info th {
+    color: #1e40af;
+    width: 30%;
+  }
+</style>
+</head>
+<body>
+<h1 id="test-plan-akademi-competition">Test Plan — Akademi Competition</h1>
+<h2 id="1-identitas-dokumen">1. Identitas Dokumen</h2>
+<table class="doc-info">
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nama Proyek</strong></td>
+<td>Akademi Competition</td>
+</tr>
+<tr>
+<td><strong>Repositori</strong></td>
+<td>https://github.com/irzadzulhika29/ac_fe (branch: <code>dev</code>)</td>
+</tr>
+<tr>
+<td><strong>Website</strong></td>
+<td>https://akademicompetition.id</td>
+</tr>
+<tr>
+<td><strong>Tipe Aplikasi</strong></td>
+<td>Web SPA (Vite + React 19, Tailwind CSS v4)</td>
+</tr>
+<tr>
+<td><strong>Role Pengguna</strong></td>
+<td>Public, User (Mahasiswa), Admin, Mentor, Marketing</td>
+</tr>
+<tr>
+<td><strong>Tester</strong></td>
+<td>[Nama Tester]</td>
+</tr>
+<tr>
+<td><strong>Tanggal</strong></td>
+<td>Juni 2026</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-ruang-lingkup">2. Ruang Lingkup</h2>
+<h3 id="21-modul-yang-di-test">2.1 Modul yang Di-Test</h3>
+<table>
+<thead>
+<tr>
+<th>Modul</th>
+<th>Prioritas</th>
+<th>Tipe Test</th>
+<th>Halaman Terkait</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Artikel (Social Forum)</strong></td>
+<td>Tinggi</td>
+<td>Manual + API</td>
+<td><code>/user/social-forum</code>, <code>/user/create-article</code>, <code>/user/article-detail/:id</code></td>
+</tr>
+<tr>
+<td><strong>Team Matchmaking</strong></td>
+<td>Tinggi</td>
+<td>Manual + API</td>
+<td>Tab Team Builder di User Dashboard, CreateLobbyModal</td>
+</tr>
+<tr>
+<td><strong>Selection Form</strong></td>
+<td>Sedang</td>
+<td>API</td>
+<td>Admin dashboard (Add/Edit bootcamp → selection config)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-di-luar-lingkup-iterasi-ini">2.2 Di Luar Lingkup (Iterasi Ini)</h3>
+<ul>
+<li>Modul lain (Class, Cart/Checkout, Certificate, Calendar, Live Bootcamp, Admin CRUD selain selection)</li>
+<li>Mentor dashboard</li>
+<li>Marketing referral</li>
+<li>Entrance animation / bootstrap</li>
+</ul>
+<h2 id="3-jadwal">3. Jadwal</h2>
+<table>
+<thead>
+<tr>
+<th>Aktivitas</th>
+<th>Durasi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Test case design &amp; review</td>
+<td>2 hari</td>
+</tr>
+<tr>
+<td>Manual testing (UI)</td>
+<td>3 hari</td>
+</tr>
+<tr>
+<td>API testing</td>
+<td>2 hari</td>
+</tr>
+<tr>
+<td>Bug reporting &amp; retest</td>
+<td>2 hari</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-modul-1-artikel-social-forum">4. Modul 1: Artikel (Social Forum)</h2>
+<h3 id="41-halaman-fitur">4.1 Halaman &amp; Fitur</h3>
+<table>
+<thead>
+<tr>
+<th>Halaman</th>
+<th>Deskripsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Social Forum</strong> (<code>/user/social-forum</code>)</td>
+<td>Feed artikel: tab For You, Following, My Articles, Saved; search, filter by tags</td>
+</tr>
+<tr>
+<td><strong>Create Article</strong> (<code>/user/create-article</code>)</td>
+<td>Editor rich text (Quill-like), cover image upload, tag selector, visibility (public/private)</td>
+</tr>
+<tr>
+<td><strong>Article Detail</strong> (<code>/user/detail-article/:id</code>)</td>
+<td>Halaman detail artikel, like/unlike, save/unsave, komentar, author info</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-api-endpoints-artikel">4.2 API Endpoints (Artikel)</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Deskripsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/articles</code></td>
+<td>Tidak</td>
+<td>List artikel publik (pagination, search, tagIds)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/articles/trending</code></td>
+<td>Tidak</td>
+<td>Artikel trending</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/articles/tags</code></td>
+<td>Tidak</td>
+<td>Daftar tag artikel</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/articles/:slug</code></td>
+<td>Tidak</td>
+<td>Detail artikel (by slug)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/articles/:id/comments</code></td>
+<td>Tidak</td>
+<td>Komentar artikel publik</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/users/articles</code></td>
+<td>Ya</td>
+<td>Artikel saya sendiri</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/users/articles/saved</code></td>
+<td>Ya</td>
+<td>Artikel yang disimpan</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/users/articles/following</code></td>
+<td>Ya</td>
+<td>Artikel dari yang diikuti</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/users/articles/:id</code></td>
+<td>Ya</td>
+<td>Detail artikel saya</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/users/articles</code></td>
+<td>Ya</td>
+<td>Buat artikel baru (multipart)</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><code>/users/articles/:id</code></td>
+<td>Ya</td>
+<td>Update artikel (multipart)</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/users/articles/:id</code></td>
+<td>Ya</td>
+<td>Hapus artikel</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/users/articles/:id/like</code></td>
+<td>Ya</td>
+<td>Like artikel</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/users/articles/:id/like</code></td>
+<td>Ya</td>
+<td>Unlike artikel</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/users/articles/:id/save</code></td>
+<td>Ya</td>
+<td>Simpan artikel</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/users/articles/:id/save</code></td>
+<td>Ya</td>
+<td>Batal simpan</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/users/articles/:id/comments</code></td>
+<td>Ya</td>
+<td>Tambah komentar</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/users/articles/comments/:id</code></td>
+<td>Ya</td>
+<td>Hapus komentar</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-skenario-test-manual-artikel">4.3 Skenario Test Manual (Artikel)</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Skenario</th>
+<th>Langkah</th>
+<th>Hasil Diharapkan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A-C-01</td>
+<td>Melihat feed artikel (For You)</td>
+<td>1. Login user 2. Buka Social Forum 3. Tab "For You" aktif</td>
+<td>Artikel tampil dalam bentuk card, infinite scroll berfungsi</td>
+</tr>
+<tr>
+<td>A-C-02</td>
+<td>Search artikel</td>
+<td>1. Ketik kata kunci di search bar</td>
+<td>Artikel sesuai keyword tampil</td>
+</tr>
+<tr>
+<td>A-C-03</td>
+<td>Filter by tag</td>
+<td>1. Klik filter tag 2. Pilih 1+ tag</td>
+<td>Artikel difilter sesuai tag</td>
+</tr>
+<tr>
+<td>A-C-04</td>
+<td>Melihat trending artikel</td>
+<td>Scroll ke trending sidebar</td>
+<td>Trending artikel tampil</td>
+</tr>
+<tr>
+<td>A-C-05</td>
+<td>Membuat artikel baru</td>
+<td>1. Klik "Buat Artikel" 2. Isi title, body (rich text) 3. Upload cover image 4. Pilih tag 5. Set visibility 6. Publish</td>
+<td>Artikel sukses dibuat, muncul di feed</td>
+</tr>
+<tr>
+<td>A-C-06</td>
+<td>Membuat artikel tanpa cover image</td>
+<td>Coba publish tanpa gambar cover</td>
+<td>Validasi: cover image required</td>
+</tr>
+<tr>
+<td>A-C-07</td>
+<td>Melihat detail artikel</td>
+<td>Klik salah satu artikel</td>
+<td>Halaman detail tampil (title, body, cover, author, komentar)</td>
+</tr>
+<tr>
+<td>A-C-08</td>
+<td>Like artikel</td>
+<td>Klik tombol like</td>
+<td>Icon like berubah, count +1</td>
+</tr>
+<tr>
+<td>A-C-09</td>
+<td>Unlike artikel</td>
+<td>Klik tombol unlike</td>
+<td>Icon kembali, count -1</td>
+</tr>
+<tr>
+<td>A-C-10</td>
+<td>Save artikel</td>
+<td>Klik tombol save</td>
+<td>Artikel tersimpan</td>
+</tr>
+<tr>
+<td>A-C-11</td>
+<td>Melihat saved articles</td>
+<td>Pindah tab "Saved"</td>
+<td>Artikel yang disave tampil</td>
+</tr>
+<tr>
+<td>A-C-12</td>
+<td>Tambah komentar</td>
+<td>Tulis komentar lalu submit</td>
+<td>Komentar muncul di thread</td>
+</tr>
+<tr>
+<td>A-C-13</td>
+<td>Hapus komentar</td>
+<td>Klik hapus pada komentar sendiri</td>
+<td>Komentar terhapus</td>
+</tr>
+<tr>
+<td>A-C-14</td>
+<td>My Articles tab</td>
+<td>Buka tab "My Articles"</td>
+<td>Hanya artikel milik sendiri</td>
+</tr>
+<tr>
+<td>A-C-15</td>
+<td>Edit artikel</td>
+<td>Buka artikel sendiri, klik edit, ubah judul, save</td>
+<td>Perubahan tersimpan</td>
+</tr>
+<tr>
+<td>A-C-16</td>
+<td>Hapus artikel</td>
+<td>Hapus artikel dari my articles</td>
+<td>Artikel terhapus dari feed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-modul-2-team-matchmaking">5. Modul 2: Team Matchmaking</h2>
+<h3 id="51-halaman-fitur">5.1 Halaman &amp; Fitur</h3>
+<table>
+<thead>
+<tr>
+<th>Halaman</th>
+<th>Deskripsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Team Builder Tab</strong> (di User Dashboard)</td>
+<td>Daftar lobby, filter, create lobby, join lobby</td>
+</tr>
+<tr>
+<td><strong>Create Lobby Modal</strong> (3-step wizard)</td>
+<td>Step 1: Pilih kompetisi (manual/catalog) — Step 2: Info tim — Step 3: Roles &amp; deadline</td>
+</tr>
+<tr>
+<td><strong>Lobby Detail Modal</strong></td>
+<td>Detail lobby, daftar anggota, apply/join, leave requests</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-api-endpoints-team-matchmaking">5.2 API Endpoints (Team Matchmaking)</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Deskripsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/competitions</code></td>
+<td>Ya</td>
+<td>Daftar kompetisi untuk filter</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/universities</code></td>
+<td>Ya</td>
+<td>Daftar universitas</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/lobbies/stats</code></td>
+<td>Tidak</td>
+<td>Statistik lobby (total lobby, dll)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/users/matchmaking/lobbies</code></td>
+<td>Ya</td>
+<td>List lobby (dengan filter)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/users/matchmaking/lobbies/me</code></td>
+<td>Ya</td>
+<td>Lobby milik saya</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/users/matchmaking/lobbies/:id</code></td>
+<td>Ya</td>
+<td>Detail lobby</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/users/matchmaking/lobbies</code></td>
+<td>Ya</td>
+<td>Buat lobby baru</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/users/matchmaking/lobbies/:id</code></td>
+<td>Ya</td>
+<td>Hapus lobby (owner only)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/users/matchmaking/lobbies/:id/apply</code></td>
+<td>Ya</td>
+<td>Apply/join lobby</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/users/matchmaking/lobbies/:id/applications/:appId</code></td>
+<td>Ya</td>
+<td>Review applicant (approve/reject)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/users/matchmaking/lobbies/:id/leave-requests</code></td>
+<td>Ya</td>
+<td>Request leave dari lobby</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/users/matchmaking/lobbies/:id/leave-requests</code></td>
+<td>Ya</td>
+<td>List leave requests (owner)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/users/matchmaking/lobbies/:id/leave-requests/:userId</code></td>
+<td>Ya</td>
+<td>Review leave request (approve/reject)</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/users/matchmaking/lobbies/:id/members/:userId</code></td>
+<td>Ya</td>
+<td>Kick member (owner only)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/users/matchmaking/rooms</code></td>
+<td>Ya</td>
+<td>List matchmaking rooms</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/users/matchmaking/rooms/me</code></td>
+<td>Ya</td>
+<td>My active room</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/users/matchmaking/rooms/:id/ws-ticket</code></td>
+<td>Ya</td>
+<td>Create WebSocket ticket</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-skenario-test-manual-team-matchmaking">5.3 Skenario Test Manual (Team Matchmaking)</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Skenario</th>
+<th>Langkah</th>
+<th>Hasil Diharapkan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T-C-01</td>
+<td>Melihat daftar lobby</td>
+<td>Buka Team Builder tab</td>
+<td>Lobby cards tampil (nama, kompetisi, role yg dicari, deadline)</td>
+</tr>
+<tr>
+<td>T-C-02</td>
+<td>Filter lobby by kompetisi</td>
+<td>Pilih filter kompetisi</td>
+<td>Lobby terfilter sesuai kompetisi</td>
+</tr>
+<tr>
+<td>T-C-03</td>
+<td>Filter lobby by universitas</td>
+<td>Pilih filter universitas</td>
+<td>Lobby dari universitas tertentu</td>
+</tr>
+<tr>
+<td>T-C-04</td>
+<td>Create lobby (catalog mode)</td>
+<td>1. Klik "Buat Lobby" 2. Pilih kompetisi dari katalog 3. Isi info tim 4. Atur roles &amp; deadline</td>
+<td>Lobby berhasil dibuat</td>
+</tr>
+<tr>
+<td>T-C-05</td>
+<td>Create lobby (manual mode)</td>
+<td>1. Pilih manual mode 2. Input nama kompetisi manual 3. Info tim 4. Roles &amp; deadline</td>
+<td>Lobby manual berhasil</td>
+</tr>
+<tr>
+<td>T-C-06</td>
+<td>Validasi create lobby - nama wajib</td>
+<td>Submit tanpa nama tim</td>
+<td>Validasi error</td>
+</tr>
+<tr>
+<td>T-C-07</td>
+<td>Validasi create lobby - deadline lewat</td>
+<td>Set deadline di masa lalu</td>
+<td>Validasi error</td>
+</tr>
+<tr>
+<td>T-C-08</td>
+<td>Join lobby (apply)</td>
+<td>Klik "Apply" pada lobby</td>
+<td>Application terkirim, status pending</td>
+</tr>
+<tr>
+<td>T-C-09</td>
+<td>Review applicant (approve)</td>
+<td>Sebagai owner, approve aplikasi</td>
+<td>Applicant masuk anggota lobby</td>
+</tr>
+<tr>
+<td>T-C-10</td>
+<td>Review applicant (reject)</td>
+<td>Sebagai owner, reject aplikasi</td>
+<td>Applicant ditolak</td>
+</tr>
+<tr>
+<td>T-C-11</td>
+<td>Melihat detail lobby</td>
+<td>Klik lobby card</td>
+<td>Detail: anggota, roles, deadline, status</td>
+</tr>
+<tr>
+<td>T-C-12</td>
+<td>Delete lobby (owner)</td>
+<td>Sebagai owner, hapus lobby</td>
+<td>Lobby terhapus</td>
+</tr>
+<tr>
+<td>T-C-13</td>
+<td>Request leave lobby</td>
+<td>Sebagai anggota, request leave</td>
+<td>Request terkirim ke owner</td>
+</tr>
+<tr>
+<td>T-C-14</td>
+<td>Approve leave request</td>
+<td>Owner approve leave</td>
+<td>Anggota keluar dari lobby</td>
+</tr>
+<tr>
+<td>T-C-15</td>
+<td>Kick member</td>
+<td>Owner kick anggota</td>
+<td>Anggota dikeluarkan</td>
+</tr>
+<tr>
+<td>T-C-16</td>
+<td>My lobbies tab</td>
+<td>Lihat "Lobby Saya"</td>
+<td>Hanya lobby milik user</td>
+</tr>
+<tr>
+<td>T-C-17</td>
+<td>Matchmaking rooms</td>
+<td>Cek tab rooms setelah match</td>
+<td>Room aktif tampil jika sudah match</td>
+</tr>
+<tr>
+<td>T-C-18</td>
+<td>Lobby stats</td>
+<td>Buka Team Builder</td>
+<td>Statistik: total lobby, active members, dll</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-modul-3-selection-form">6. Modul 3: Selection Form</h2>
+<h3 id="61-fitur">6.1 Fitur</h3>
+<p>Selection form adalah konfigurasi admin untuk menambahkan form seleksi pendaftaran ke bootcamp/class. Admin dapat:
+- Mengaktifkan/menonaktifkan seleksi pendaftaran
+- Mengatur judul &amp; deskripsi form seleksi
+- Menambahkan pertanyaan (question builder)
+- Mengatur pertanyaan wajib / opsional</p>
+<h3 id="62-api-endpoints-terkait">6.2 API Endpoints terkait</h3>
+<p>Selection form dikirim bersamaan dengan operasi class/bootcamp:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Auth</th>
+<th>Deskripsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/operational/add-competitions</code></td>
+<td>Admin</td>
+<td>Simpan kompetisi dengan selection config</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/operational/update-competitions/:id</code></td>
+<td>Admin</td>
+<td>Update kompetisi + selection</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-skenario-test-manual-selection-form-admin">6.3 Skenario Test Manual (Selection Form — Admin)</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Skenario</th>
+<th>Langkah</th>
+<th>Hasil Diharapkan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S-C-01</td>
+<td>Buka form add bootcamp/class</td>
+<td>Login admin, buka add bootcamp</td>
+<td>Form tampil dengan opsi selection</td>
+</tr>
+<tr>
+<td>S-C-02</td>
+<td>Aktifkan selection form</td>
+<td>Toggle selection enabled</td>
+<td>Form builder pertanyaan muncul</td>
+</tr>
+<tr>
+<td>S-C-03</td>
+<td>Tambah pertanyaan selection</td>
+<td>Klik "Tambah Pertanyaan"</td>
+<td>Input field pertanyaan baru</td>
+</tr>
+<tr>
+<td>S-C-04</td>
+<td>Isi semua field selection</td>
+<td>Judul, deskripsi, pertanyaan</td>
+<td>Semua tersimpan</td>
+</tr>
+<tr>
+<td>S-C-05</td>
+<td>Validasi - judul kosong</td>
+<td>Aktifkan selection, judul kosong, submit</td>
+<td>Validasi error "Judul wajib diisi"</td>
+</tr>
+<tr>
+<td>S-C-06</td>
+<td>Validasi - tanpa pertanyaan</td>
+<td>Aktifkan selection, 0 pertanyaan, submit</td>
+<td>Validasi error "Minimal 1 pertanyaan"</td>
+</tr>
+<tr>
+<td>S-C-07</td>
+<td>Validasi - pertanyaan kosong</td>
+<td>Tambah pertanyaan tanpa text</td>
+<td>Validasi error</td>
+</tr>
+<tr>
+<td>S-C-08</td>
+<td>Hapus pertanyaan</td>
+<td>Hapus salah satu pertanyaan</td>
+<td>Pertanyaan terhapus dari list</td>
+</tr>
+<tr>
+<td>S-C-09</td>
+<td>Reorder pertanyaan</td>
+<td>Drag &amp; drop urutan</td>
+<td>Urutan berubah</td>
+</tr>
+<tr>
+<td>S-C-10</td>
+<td>Nonaktifkan selection</td>
+<td>Toggle off</td>
+<td>Form builder hilang, data selection tidak ikut terkirim</td>
+</tr>
+<tr>
+<td>S-C-11</td>
+<td>Edit selection (update)</td>
+<td>Edit bootcamp, lihat selection form</td>
+<td>Data selection yang sudah ada muncul</td>
+</tr>
+<tr>
+<td>S-C-12</td>
+<td>User registrasi dengan selection</td>
+<td>User daftar bootcamp dengan selection</td>
+<td>Form seleksi muncul sebelum konfirmasi</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-api-test-cases-cross-module-positif-negatif">7. API Test Cases (Cross-Module Positif &amp; Negatif)</h2>
+<h3 id="71-auth">7.1 Auth</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Skenario</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API-A-01</td>
+<td>Login valid</td>
+<td>POST</td>
+<td><code>/auth/login</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-A-02</td>
+<td>Login invalid password</td>
+<td>POST</td>
+<td><code>/auth/login</code></td>
+<td>401</td>
+</tr>
+<tr>
+<td>API-A-03</td>
+<td>Register valid</td>
+<td>POST</td>
+<td><code>/auth/register</code></td>
+<td>201</td>
+</tr>
+<tr>
+<td>API-A-04</td>
+<td>Register duplicate email</td>
+<td>POST</td>
+<td><code>/auth/register</code></td>
+<td>409</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-artikel-api">7.2 Artikel API</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Skenario</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API-ART-01</td>
+<td>Get articles (no auth)</td>
+<td>GET</td>
+<td><code>/articles</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-02</td>
+<td>Get articles with pagination</td>
+<td>GET</td>
+<td><code>/articles?page=1&amp;limit=10</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-03</td>
+<td>Get articles with search</td>
+<td>GET</td>
+<td><code>/articles?search=olimpiade</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-04</td>
+<td>Get articles with tag filter</td>
+<td>GET</td>
+<td><code>/articles?tag_id=1</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-05</td>
+<td>Get trending articles</td>
+<td>GET</td>
+<td><code>/articles/trending</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-06</td>
+<td>Get article tags</td>
+<td>GET</td>
+<td><code>/articles/tags</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-07</td>
+<td>Get article detail (valid slug)</td>
+<td>GET</td>
+<td><code>/articles/:slug</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-08</td>
+<td>Get article detail (invalid slug)</td>
+<td>GET</td>
+<td><code>/articles/invalid-slug</code></td>
+<td>404</td>
+</tr>
+<tr>
+<td>API-ART-09</td>
+<td>Get my articles (no auth)</td>
+<td>GET</td>
+<td><code>/users/articles</code></td>
+<td>401</td>
+</tr>
+<tr>
+<td>API-ART-10</td>
+<td>Get my articles (with auth)</td>
+<td>GET</td>
+<td><code>/users/articles</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-11</td>
+<td>Get saved articles (auth)</td>
+<td>GET</td>
+<td><code>/users/articles/saved</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-12</td>
+<td>Get following articles (auth)</td>
+<td>GET</td>
+<td><code>/users/articles/following</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-13</td>
+<td>Create article (valid, multipart)</td>
+<td>POST</td>
+<td><code>/users/articles</code></td>
+<td>201</td>
+</tr>
+<tr>
+<td>API-ART-14</td>
+<td>Create article (no cover image)</td>
+<td>POST</td>
+<td><code>/users/articles</code></td>
+<td>422</td>
+</tr>
+<tr>
+<td>API-ART-15</td>
+<td>Create article (empty title)</td>
+<td>POST</td>
+<td><code>/users/articles</code></td>
+<td>422</td>
+</tr>
+<tr>
+<td>API-ART-16</td>
+<td>Create article (no auth)</td>
+<td>POST</td>
+<td><code>/users/articles</code></td>
+<td>401</td>
+</tr>
+<tr>
+<td>API-ART-17</td>
+<td>Update article (owner)</td>
+<td>PUT</td>
+<td><code>/users/articles/:id</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-18</td>
+<td>Update article (not owner)</td>
+<td>PUT</td>
+<td><code>/users/articles/:id</code></td>
+<td>403</td>
+</tr>
+<tr>
+<td>API-ART-19</td>
+<td>Delete article (owner)</td>
+<td>DELETE</td>
+<td><code>/users/articles/:id</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-20</td>
+<td>Delete article (no auth)</td>
+<td>DELETE</td>
+<td><code>/users/articles/:id</code></td>
+<td>401</td>
+</tr>
+<tr>
+<td>API-ART-21</td>
+<td>Like article</td>
+<td>POST</td>
+<td><code>/users/articles/:id/like</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-22</td>
+<td>Unlike article</td>
+<td>DELETE</td>
+<td><code>/users/articles/:id/like</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-23</td>
+<td>Like article twice (idempotent)</td>
+<td>POST</td>
+<td><code>/users/articles/:id/like</code></td>
+<td>200 (already liked)</td>
+</tr>
+<tr>
+<td>API-ART-24</td>
+<td>Unlike without like (idempotent)</td>
+<td>DELETE</td>
+<td><code>/users/articles/:id/like</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-25</td>
+<td>Save article</td>
+<td>POST</td>
+<td><code>/users/articles/:id/save</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-26</td>
+<td>Unsave article</td>
+<td>DELETE</td>
+<td><code>/users/articles/:id/save</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-27</td>
+<td>Add comment to article</td>
+<td>POST</td>
+<td><code>/users/articles/:id/comments</code></td>
+<td>201</td>
+</tr>
+<tr>
+<td>API-ART-28</td>
+<td>Add comment (empty content)</td>
+<td>POST</td>
+<td><code>/users/articles/:id/comments</code></td>
+<td>422</td>
+</tr>
+<tr>
+<td>API-ART-29</td>
+<td>Get article comments</td>
+<td>GET</td>
+<td><code>/articles/:id/comments</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-30</td>
+<td>Delete own comment</td>
+<td>DELETE</td>
+<td><code>/users/articles/comments/:id</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-ART-31</td>
+<td>Delete comment (not owner)</td>
+<td>DELETE</td>
+<td><code>/users/articles/comments/:id</code></td>
+<td>403</td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-team-matchmaking-api">7.3 Team Matchmaking API</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Skenario</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API-TM-01</td>
+<td>Get competitions list</td>
+<td>GET</td>
+<td><code>/competitions</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-02</td>
+<td>Get universities list</td>
+<td>GET</td>
+<td><code>/universities</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-03</td>
+<td>Get lobby stats</td>
+<td>GET</td>
+<td><code>/lobbies/stats</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-04</td>
+<td>Get all lobbies (with filters)</td>
+<td>GET</td>
+<td><code>/users/matchmaking/lobbies</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-05</td>
+<td>Get all lobbies (no auth)</td>
+<td>GET</td>
+<td><code>/users/matchmaking/lobbies</code></td>
+<td>401</td>
+</tr>
+<tr>
+<td>API-TM-06</td>
+<td>Get my lobbies</td>
+<td>GET</td>
+<td><code>/users/matchmaking/lobbies/me</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-07</td>
+<td>Get lobby detail</td>
+<td>GET</td>
+<td><code>/users/matchmaking/lobbies/:id</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-08</td>
+<td>Get lobby detail (invalid id)</td>
+<td>GET</td>
+<td><code>/users/matchmaking/lobbies/invalid</code></td>
+<td>404</td>
+</tr>
+<tr>
+<td>API-TM-09</td>
+<td>Create lobby (valid)</td>
+<td>POST</td>
+<td><code>/users/matchmaking/lobbies</code></td>
+<td>201</td>
+</tr>
+<tr>
+<td>API-TM-10</td>
+<td>Create lobby (empty name)</td>
+<td>POST</td>
+<td><code>/users/matchmaking/lobbies</code></td>
+<td>422</td>
+</tr>
+<tr>
+<td>API-TM-11</td>
+<td>Create lobby (no auth)</td>
+<td>POST</td>
+<td><code>/users/matchmaking/lobbies</code></td>
+<td>401</td>
+</tr>
+<tr>
+<td>API-TM-12</td>
+<td>Delete own lobby</td>
+<td>DELETE</td>
+<td><code>/users/matchmaking/lobbies/:id</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-13</td>
+<td>Delete lobby (not owner)</td>
+<td>DELETE</td>
+<td><code>/users/matchmaking/lobbies/:id</code></td>
+<td>403</td>
+</tr>
+<tr>
+<td>API-TM-14</td>
+<td>Apply to lobby</td>
+<td>POST</td>
+<td><code>/users/matchmaking/lobbies/:id/apply</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-15</td>
+<td>Apply to lobby (already member)</td>
+<td>POST</td>
+<td><code>/users/matchmaking/lobbies/:id/apply</code></td>
+<td>409</td>
+</tr>
+<tr>
+<td>API-TM-16</td>
+<td>Review applicant (approve)</td>
+<td>PATCH</td>
+<td><code>/users/matchmaking/lobbies/:id/applications/:appId</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-17</td>
+<td>Review applicant (reject)</td>
+<td>PATCH</td>
+<td><code>/users/matchmaking/lobbies/:id/applications/:appId</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-18</td>
+<td>Review applicant (not owner)</td>
+<td>PATCH</td>
+<td><code>/users/matchmaking/lobbies/:id/applications/:appId</code></td>
+<td>403</td>
+</tr>
+<tr>
+<td>API-TM-19</td>
+<td>Request leave lobby</td>
+<td>POST</td>
+<td><code>/users/matchmaking/lobbies/:id/leave-requests</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-20</td>
+<td>Get leave requests (owner)</td>
+<td>GET</td>
+<td><code>/users/matchmaking/lobbies/:id/leave-requests</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-21</td>
+<td>Approve leave request</td>
+<td>PATCH</td>
+<td><code>/users/matchmaking/lobbies/:id/leave-requests/:userId</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-22</td>
+<td>Reject leave request</td>
+<td>PATCH</td>
+<td><code>/users/matchmaking/lobbies/:id/leave-requests/:userId</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-23</td>
+<td>Kick member (owner)</td>
+<td>DELETE</td>
+<td><code>/users/matchmaking/lobbies/:id/members/:userId</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-24</td>
+<td>Kick member (not owner)</td>
+<td>DELETE</td>
+<td><code>/users/matchmaking/lobbies/:id/members/:userId</code></td>
+<td>403</td>
+</tr>
+<tr>
+<td>API-TM-25</td>
+<td>Get rooms</td>
+<td>GET</td>
+<td><code>/users/matchmaking/rooms</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-26</td>
+<td>My active room</td>
+<td>GET</td>
+<td><code>/users/matchmaking/rooms/me</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-TM-27</td>
+<td>Create WS ticket</td>
+<td>POST</td>
+<td><code>/users/matchmaking/rooms/:id/ws-ticket</code></td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<h3 id="74-selection-form-api">7.4 Selection Form API</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Skenario</th>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API-SF-01</td>
+<td>Add competition with selection</td>
+<td>POST</td>
+<td><code>/operational/add-competitions</code></td>
+<td>201</td>
+</tr>
+<tr>
+<td>API-SF-02</td>
+<td>Add competition without selection</td>
+<td>POST</td>
+<td><code>/operational/add-competitions</code></td>
+<td>201</td>
+</tr>
+<tr>
+<td>API-SF-03</td>
+<td>Add competition (no auth)</td>
+<td>POST</td>
+<td><code>/operational/add-competitions</code></td>
+<td>401</td>
+</tr>
+<tr>
+<td>API-SF-04</td>
+<td>Update competition selection</td>
+<td>PATCH</td>
+<td><code>/operational/update-competitions/:id</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td>API-SF-05</td>
+<td>Update with empty questions</td>
+<td>PATCH</td>
+<td><code>/operational/update-competitions/:id</code></td>
+<td>422</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-lingkungan-test">8. Lingkungan Test</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BE API</strong></td>
+<td><code>{{vps}}</code> (variable di Postman)</td>
+</tr>
+<tr>
+<td><strong>FE URL</strong></td>
+<td><code>https://akademicompetition.id</code> (production) / <code>localhost:5173</code> (dev)</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>Production / Staging</td>
+</tr>
+<tr>
+<td><strong>Browser</strong></td>
+<td>Chrome, Firefox, Edge (desktop)</td>
+</tr>
+<tr>
+<td><strong>Tools</strong></td>
+<td>Postman, Playwright, Browser DevTools</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-kriteria-kelulusan">9. Kriteria Kelulusan</h2>
+<ul>
+<li>✅ Semua critical flow berjalan: create artikel, like/save, create lobby, apply lobby, selection form</li>
+<li>✅ Tidak ada error 500 pada endpoint publik</li>
+<li>✅ Auth guard berfungsi: endpoint terproteksi return 401 tanpa token</li>
+<li>✅ Validasi input berfungsi: field required, format invalid return 422</li>
+<li>✅ Role-based access: user non-admin tidak bisa akses admin endpoint</li>
+</ul>
+</body>
+</html>
